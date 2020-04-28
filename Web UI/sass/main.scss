@@ -1,0 +1,159 @@
+@import "partials/_reset.scss";
+// Beginningngn
+
+body {
+	background-color: black;
+	margin: 0;
+}
+
+/* Global */
+html {
+	min-height: 100%;
+	overflow: hidden;
+}
+body {
+	height: calc(100vh - 8em);
+	padding: 0em;
+	color: rgba(255, 255, 255, 0.75);
+	font-family: "Share Tech Mono", monospace;
+	background-color: black;
+}
+.line-1 {
+	position: relative;
+	top: 50%;
+	margin: 0 auto;
+	border-right: 2px solid rgba(255, 255, 255, 0.75);
+	font-size: 200%;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	transform: translateY(-50%);
+}
+
+/* Animation */
+.anim-typewriter {
+	animation: typewriter 4s steps(39) 2s 1 normal both,
+		blinkTextCursor 500ms steps(39) 21 normal forwards,
+		typewriter 3s steps(29) 7s reverse forwards;
+	// moveup 1s 7s ease-in-out forwards;
+}
+@keyframes typewriter {
+	from {
+		width: 0;
+	}
+	to {
+		width: 24em;
+	}
+}
+@keyframes blinkTextCursor {
+	from {
+		border-right-color: rgba(255, 255, 255, 0.75);
+	}
+	to {
+		border-right-color: transparent;
+	}
+}
+
+@keyframes moveup {
+	from {
+		top: 50%;
+	}
+	to {
+		top: -12%;
+	}
+}
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+$anim-title-time: 10s;
+.glitch {
+	color: rgb(0, 255, 64);
+	font-size: 72px;
+	position: relative;
+	width: 400px;
+	opacity: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 600px;
+	font-family: "Share Tech Mono", monospace;
+	top: 0px;
+	right: 500px;
+	animation: fade-in-title 1s $anim-title-time forwards;
+}
+@keyframes noise-anim {
+	$steps: 2000;
+	@for $i from 0 through $steps {
+		#{percentage($i*(1/$steps))} {
+			$top: random(100);
+			$bottom: random(101 - $top);
+			clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+		}
+	}
+}
+.glitch::after {
+	content: attr(data-text);
+	position: absolute;
+	left: 2px;
+	text-shadow: -1px 0 red;
+	top: 0;
+	opacity: 0;
+	color: white;
+	background: black;
+	overflow: hidden;
+	animation: noise-anim 2s infinite linear alternate-reverse,
+		fade-in-title 1s $anim-title-time forwards;
+	font-family: "Share Tech Mono", monospace;
+}
+
+@keyframes noise-anim-2 {
+	$steps: 20;
+	@for $i from 0 through $steps {
+		#{percentage($i*(1/$steps))} {
+			$top: random(100);
+			$bottom: random(101 - $top);
+			clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+		}
+	}
+}
+.glitch::before {
+	content: attr(data-text);
+	position: absolute;
+	left: -2px;
+	text-shadow: 1px 0 blue;
+	top: 0;
+	opacity: 0;
+	color: white;
+	background: black;
+	overflow: hidden;
+	animation: noise-anim-2 15s infinite linear alternate-reverse;
+	font-family: "Share Tech Mono", monospace;
+}
+
+@keyframes fade-in-title {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
