@@ -5,6 +5,6 @@ Write amazing stories!
 ## Authors
 
 - **Ravi Maurya 🦉**
-- **Kush Kothari 🐒**
+- **Kush Kothari 😎**
 - **Shreyas Penkar 🦊**
 - **Nikheel Indanoor 🦅**
