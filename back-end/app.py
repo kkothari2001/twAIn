@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import url_for,render_template,request
+from DataCleaner import Clean,Grammarize
 
 app = Flask(__name__)
 
@@ -17,9 +18,11 @@ def home():
 @app.route('/api',methods=['GET'])   # the Model API endpoint
 def API():
     text = request.args["input"]
-    data["InputStory"]=text
+    text=(text.lstrip()).rstrip()
+    data["InputStory"]=Grammarize(Clean(text))  # calling Data cleaning module
         # the text will be passed on to the model and the response will be sent back
-    return text
+        
+    return data
 
  
 @app.route('/command')   # the Command API endpoint
