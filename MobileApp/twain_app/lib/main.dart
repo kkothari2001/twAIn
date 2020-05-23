@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twain_app/commons/HexColor.dart';
 import 'package:twain_app/model/command_model.dart';
+import 'package:twain_app/model/gen_model.dart';
 
 /*
  * Commands : 
@@ -8,7 +9,8 @@ import 'package:twain_app/model/command_model.dart';
  * 
  */
 
-String aboutString = "This app is for the project being made by Team GoogleKarnaHamseSikho.\nWelcome to twAIn - A Story Generator powered by AI\n\nCreators :\nRavi 🦉\nKush 🐒\nShreyas 🦊\nNikheel 🦅";
+String aboutString = "This app is for the project being made by Team GoogleKarnaHamseSikho.\nWelcome to twAIn - A Story Generator powered by AI\n\nCreators :\n Ravi 🦉\n Kush 🐒\n Shreyas 🦊\n Nikheel 🦅\n\nMentors :\n Mehdi Patel\n Anuj Raghani\n Owais Hetavkar";
+String sampleGeneratedStory = "He was the king of that place. Still he didn't knew how to figth with the enemies, as the anger among the people rose, the king tried to kill them. The King was not a good person. Once he murdered one of his soldier because he doubt him for stealing money. But the truth was the King's wife was stealing all the moeny.";
 
 void main() => runApp(MaterialApp(
       home: Home(),
@@ -51,7 +53,7 @@ List getOutputForThisCommand(String commandtyped, String curDir) {
   // If not cd command
   switch(commandtyped){
     case 'help' : {
-      tempNextOutput = Command(preCommand: '', command: 'Try \'ls\' and \'cd\' to navigate through the app.', type: 1);
+      tempNextOutput = Command(preCommand: '', command: 'Here are a list of commands you can try :\n\n =>cd - Change Directory.\n =>ls - List everything.\n =>clear - Clear the termial.\n =>about - To know about us.\n And lots of easter eggs to discover.', type: 1);
     }
     break;
     case 'ls' : {
@@ -59,13 +61,13 @@ List getOutputForThisCommand(String commandtyped, String curDir) {
       else if(curDir == '/project/'){ tempNextOutput = Command(preCommand: '', command: 'lstm  gpt2', type: 1); }
       else if(curDir == '/folder2/'){ tempNextOutput = Command(preCommand: '', command: '', type: 1); }
       else if(curDir == '/memes/'){ tempNextOutput = Command(preCommand: '', command: '', type: 1); }
-      else if(curDir == '/project/lstm/'){ tempNextOutput = Command(preCommand: '', command: 'story-gen-lstm', type: 1); }
-      else if(curDir == '/project/gpt2/'){ tempNextOutput = Command(preCommand: '', command: 'story-gen-gpt2', type: 1); }
+      else if(curDir == '/project/lstm/'){ tempNextOutput = Command(preCommand: '', command: './storyGen', type: 1); }
+      else if(curDir == '/project/gpt2/'){ tempNextOutput = Command(preCommand: '', command: './story-gen-gpt2', type: 1); }
     }
     break;
 
     case 'clear' : {
-      tempNextOutput = Command(preCommand: '', command: '😈 You can\'t clear your past.', type: 1);
+      tempNextOutput = Command(preCommand: '', command: "You can't clear this so easily 😁\nHint : 4 creatures that build this world. ", type: 1);
     }
     break;
     // This app is for the project being made by Team GoogleKarnaHamseSikho.\nWelcome to twAIn - A Story Generator powered by AI\n\nCreators :\nRavi 🦉\nKush 🐒\nShreyas 🦊\nNikheel 🦅
@@ -95,7 +97,9 @@ class _HomeState extends State<Home> {
   TextEditingController commandController = TextEditingController();
   ScrollController _scrollController = new ScrollController();
   List<Command> histories = [];
+  List<GenModel> genHistories = [];
   String curDir = '/';
+  bool isGenModeOn = false;
 
   void scrollToBottom(context) {
     print('after rebuild');
@@ -129,6 +133,17 @@ class _HomeState extends State<Home> {
       });
       return;
     }
+
+    if(commandtyped == './storyGen' && curDir == '/project/lstm/'){
+      //sitch on gen mode
+      changeGenMode(true); // gen mode on!!
+      GenModel tempStartHeader = GenModel(type: 0, question: "===============\n==== twAIn ====\n==== v.1.0 ====\n===============", optionsText: null, inputText: null);
+      genHistories.add(tempStartHeader);
+      GenModel tempFirstQuestion = GenModel(question: 'Story Genre : ', optionsText: '(Adventure, Horror, Mystery)', inputText: '_', type: 1);
+      genHistories.add(tempFirstQuestion);
+      commandController.clear();
+      return;
+    }
     // Callout and get output
     List tempOutput = getOutputForThisCommand(commandtyped, curDir);
     Command nextOutput = tempOutput[0];
@@ -147,6 +162,37 @@ class _HomeState extends State<Home> {
           Command(preCommand: 'test@V123' + curDir, command: '_', type: 0);
       histories.add(tempH);
       commandController.clear();
+    });
+  }
+
+  void setGenHistory(){
+    GenModel tempGen;
+    GenModel extraGen;
+    genHistories[genHistories.length - 1].inputText = commandController.text;
+    if(genHistories.length == 2){
+      print('-------------------------------------');
+      print(genHistories[genHistories.length - 1].inputText);
+      tempGen = GenModel(question: 'Story Length :', optionsText: '(Short, Medium, Long)', inputText: '_', type: 1);
+    }else if(genHistories.length == 3){
+      tempGen = GenModel(question: 'Start of the Story :', optionsText: null, inputText: '_', type: 1);
+    }else if(genHistories.length == 4){  // the story input is to be taken now
+      tempGen = GenModel(question: 'Generated Story :', optionsText: null, inputText: sampleGeneratedStory, type: 1);
+      extraGen = GenModel(question: 'Type R, to read the story aloud.', optionsText: null, inputText: null, type: 2);
+    }
+    setState(() {
+      if(tempGen != null){
+        genHistories.add(tempGen);
+      }
+      if(extraGen != null){
+        genHistories.add(extraGen);
+      }
+      commandController.clear();
+    });
+  }
+
+  void changeGenMode(bool whatToSet){
+    setState(() {
+      isGenModeOn = whatToSet;
     });
   }
 
@@ -173,12 +219,69 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(5.0),
               child: Container(
                 child: ListView.builder(
-                    controller: _scrollController,
-                    //reverse: true,
-                    shrinkWrap: true,
-                    itemCount: histories.length,
-                    itemBuilder: (context, index) {
-                      print('list to be builded!');
+                  controller: _scrollController,
+                  //reverse: true,
+                  shrinkWrap: true,
+                  itemCount: (isGenModeOn) ? genHistories.length : histories.length,
+                  itemBuilder: (context, index) {
+                    print('list to be builded!');
+                    if(isGenModeOn){
+                      if(genHistories[index].type == 0){
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 20),
+                          child: Text(
+                            genHistories[index].question,
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.green,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Firacode'),
+                          ),
+                        );
+                      }else if(genHistories[index].type == 1){
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                '> ${genHistories[index].question}',
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Firacode'),
+                              ),
+                              (genHistories[index].optionsText != null) ?
+                              Text(
+                                '   ${genHistories[index].optionsText} : ',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Firacode'),
+                              ) : Container(),
+                              Text(
+                                '   => ${genHistories[index].inputText} ',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Firacode'),
+                              ),
+                            ],
+                          )
+                        );
+                      }else if(genHistories[index].type == 2){
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 20),
+                          child: Text(
+                            '   >> ${genHistories[index].question}',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Firacode'),
+                          ),
+                        );
+                      }
+                    }else{
                       if (histories[index].type == 0) {
                         return Padding(
                           padding: const EdgeInsets.only(top: 10),
@@ -221,7 +324,8 @@ class _HomeState extends State<Home> {
                           ),
                         );
                       }
-                    }),
+                    }
+                  }),
               ),
             )),
             Padding(
@@ -253,7 +357,11 @@ class _HomeState extends State<Home> {
                     ),
                     InkWell(
                         onTap: () {
-                          setHistory();
+                          if(isGenModeOn){
+                            setGenHistory();
+                          }else{
+                            setHistory();
+                          }
                         },
                         child: Icon(
                           Icons.send,
