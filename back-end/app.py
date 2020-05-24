@@ -57,7 +57,9 @@ def action():
     API("action")
     return data
 
-
+@app.route('/privacy-policy')
+def policy():
+    return render_template('privacy_policy.html')
  
 @app.route('/command')   # the Command API endpoint
 def Command():           
