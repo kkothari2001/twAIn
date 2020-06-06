@@ -1,7 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:twain_app/commons/HexColor.dart';
 import 'package:twain_app/model/command_model.dart';
 import 'package:twain_app/model/gen_model.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+
 
 /*
  * Commands : 
@@ -100,6 +106,10 @@ class _HomeState extends State<Home> {
   List<GenModel> genHistories = [];
   String curDir = '/';
   bool isGenModeOn = false;
+  String inputTextStory = "";
+  String outputStory = "";
+  String loadingState = "send";   // (send,load,speak)
+  FlutterTts flutterTts = FlutterTts();
 
   void scrollToBottom(context) {
     print('after rebuild');
@@ -108,6 +118,15 @@ class _HomeState extends State<Home> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
+  }
+
+  Future<String> fetchGeneratedStory() async{
+    final res = await http.get('https://thawing-springs-95929.herokuapp.com/api/adventure?inputText=$inputTextStory');
+    if(res.statusCode == 200){
+      return (json.decode(res.body)['OutputStory']);
+    }else{
+      return 'error';
+    }
   }
 
   @override
@@ -165,19 +184,53 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void setGenHistory(){
-    GenModel tempGen;
+  
+
+  void setGenHistory() async {
+    GenModel tempGen; 
     GenModel extraGen;
-    genHistories[genHistories.length - 1].inputText = commandController.text;
+    
     if(genHistories.length == 2){
+      genHistories[genHistories.length - 1].inputText = commandController.text;
       print('-------------------------------------');
       print(genHistories[genHistories.length - 1].inputText);
       tempGen = GenModel(question: 'Story Length :', optionsText: '(Short, Medium, Long)', inputText: '_', type: 1);
     }else if(genHistories.length == 3){
+      genHistories[genHistories.length - 1].inputText = commandController.text;
       tempGen = GenModel(question: 'Start of the Story :', optionsText: null, inputText: '_', type: 1);
     }else if(genHistories.length == 4){  // the story input is to be taken now
-      tempGen = GenModel(question: 'Generated Story :', optionsText: null, inputText: sampleGeneratedStory, type: 1);
+      genHistories[genHistories.length - 1].inputText = commandController.text;
+      inputTextStory = genHistories[genHistories.length - 1].inputText;
+      // fetch output story
+      setState(() {
+        loadingState = "load";
+      });
+      outputStory = await fetchGeneratedStory();
+      tempGen = GenModel(question: 'Generated Story :', optionsText: null, inputText: outputStory, type: 1);
       extraGen = GenModel(question: 'Type R, to read the story aloud.', optionsText: null, inputText: null, type: 2);
+      setState(() {
+        loadingState = "send";
+      });
+    }else if(genHistories.length >= 5){
+      if(commandController.text == "R" || commandController.text == "r"){
+        flutterTts.setStartHandler(() {
+          setState(() {
+            loadingState = "speak";
+          });
+        });
+
+        flutterTts.setCompletionHandler(() {
+          setState(() {
+            loadingState = "send";
+          });
+        });
+        var result = await flutterTts.speak(outputStory);
+      }else if(commandController.text == "exit"){
+        setState(() {
+          isGenModeOn = false;
+          genHistories.clear();
+        });
+      }
     }
     setState(() {
       if(tempGen != null){
@@ -194,6 +247,28 @@ class _HomeState extends State<Home> {
     setState(() {
       isGenModeOn = whatToSet;
     });
+  }
+
+  Widget sendBtnStatus(){
+    if(loadingState == "send"){
+      return InkWell(
+                        onTap: () {
+                          if(isGenModeOn){
+                            setGenHistory();
+                          }else{
+                            setHistory();
+                          }
+                        },
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.green,
+                          size: 30,
+                        ));
+    }else if(loadingState == "load"){
+      return SpinKitRing(size : 22.0, color: Colors.white, lineWidth: 3);
+    }else if(loadingState == "speak"){
+      return SpinKitWave(size : 20.0, color: Colors.white);
+    }
   }
 
   @override
@@ -355,19 +430,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    InkWell(
-                        onTap: () {
-                          if(isGenModeOn){
-                            setGenHistory();
-                          }else{
-                            setHistory();
-                          }
-                        },
-                        child: Icon(
-                          Icons.send,
-                          color: Colors.green,
-                          size: 30,
-                        )),
+                    sendBtnStatus(),
                   ],
                 ),
               ),
