@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import url_for,render_template,request
-from DataCleaner import Clean,Grammarize
+#from DataCleaner import Clean,Grammarize
 from ModelDriver import generate
 
 
@@ -27,7 +27,7 @@ def API(genre):  # API handler function
     data["Genre"]=genre
     text = request.args["inputText"]
     text=(text.lstrip()).rstrip()
-    data["InputStory"]=Grammarize(Clean(text))         # calling Data cleaning module
+    data["InputStory"]=text         # calling Data cleaning module
     # data["InputStory"]=text             # only for gpt-2 model 
     data["OutputStory"]=generate(data["InputStory"])  # the text will be passed on to the model and the response will be sent back  
     # data["OutputStory"]=text*50  # just for demo 
