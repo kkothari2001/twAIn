@@ -30,5 +30,5 @@ def generate(inputStory):
     #seed_text = "he boy had dreamed of the treasure he had no idea where the treasure is but he was sure it was somewhere hidden in the mountains"
     seed_text=inputStory
     seq_length=50
-    output=generate_text_seq(loaded_model, tokenizer, seq_length, seed_text, 500)
+    output=generate_text_seq(loaded_model, tokenizer, seq_length, seed_text, 200)
     return inputStory+" "+output
