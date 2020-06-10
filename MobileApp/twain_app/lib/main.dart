@@ -7,6 +7,7 @@ import 'package:twain_app/model/gen_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:twain_app/pages/guiPage.dart';
 
 
 /*
@@ -19,7 +20,8 @@ String aboutString = "This app is for the project being made by Team GoogleKarna
 String sampleGeneratedStory = "He was the king of that place. Still he didn't knew how to figth with the enemies, as the anger among the people rose, the king tried to kill them. The King was not a good person. Once he murdered one of his soldier because he doubt him for stealing money. But the truth was the King's wife was stealing all the moeny.";
 
 void main() => runApp(MaterialApp(
-      home: Home(),
+  debugShowCheckedModeBanner: false,
+      home: GUIPage(),
     ));
 
 Map<String, String> commandsBook = {
