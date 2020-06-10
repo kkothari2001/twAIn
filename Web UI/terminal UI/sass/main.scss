@@ -12,7 +12,7 @@ html {
 	overflow: hidden;
 }
 body {
-	height: calc(100vh - 8em);
+	height: 100vh;
 	padding: 0em;
 	color: rgba(255, 255, 255, 0.75);
 	font-family: "Share Tech Mono", monospace;
@@ -97,7 +97,7 @@ $anim-title-time: 10s;
 	margin-left: 600px;
 	font-family: "Share Tech Mono", monospace;
 	top: 0px;
-	right: 500px;
+	left: 550px;
 	animation: fade-in-title 1s $anim-title-time forwards;
 }
 @keyframes noise-anim {
@@ -155,5 +155,46 @@ $anim-title-time: 10s;
 	}
 	to {
 		opacity: 1;
+	}
+}
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+$term-appear-time: $anim-title-time + 1s;
+
+.term {
+	background-color: black;
+	color: green;
+	display: block;
+	height: 80%;
+	width: 80%;
+	opacity: 0;
+	margin: 0px auto;
+	animation: termappear 1s ease $term-appear-time forwards;
+}
+
+@keyframes termappear {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 100;
 	}
 }

@@ -1,0 +1,275 @@
+$header-enter-time: 1s;
+$content-enter-time: $header-enter-time + 1s;
+$footer-enter-time: $content-enter-time + 1s;
+$settings-appear-time: $footer-enter-time + 0.5s;
+$story-appear-time: $settings-appear-time + 0.7s;
+$diff: 0.5s;
+$kush: $story-appear-time + $diff;
+$ravi: $kush + $diff;
+$shreyas: $ravi + $diff;
+$nikheel: $shreyas + $diff;
+:root {
+	--main-color: #010808;
+	--main-opp-color: #4cd93a;
+}
+
+// resets
+
+body {
+	font-family: "Fira Mono", monospace;
+	margin: 0;
+	overflow-y: hidden; // hide vertical
+	overflow-x: hidden; // hide horizontal
+}
+
+// $main-color: #010808;
+// $main-opp-color: #33faff;
+
+header {
+	text-align: center;
+	font-size: 5em;
+	line-height: 20vh;
+	color: var(--main-opp-color);
+	background-color: var(--main-color);
+	height: 20vh;
+	transition: all 0.3s;
+	transform: translate(-100vw);
+	animation: enter-title 1s forwards;
+	&:hover {
+		height: 23vh;
+		line-height: 23vh;
+		background-color: var(--main-opp-color);
+		color: var(--main-color);
+	}
+	@keyframes enter-title {
+		from {
+			transform: translate(-100vw);
+		}
+		to {
+			transform: translate(0);
+		}
+	}
+}
+
+main {
+	padding-top: 5px;
+	display: flex;
+	position: relative;
+	flex-direction: row;
+	background-color: var(--main-color);
+	color: var(--main-opp-color);
+	height: 70vh;
+	width: 120vw;
+	transform: translate(100vw);
+	animation: enter-content 1s $header-enter-time forwards;
+	@keyframes enter-content {
+		from {
+			transform: translate(100vw);
+		}
+		to {
+			transform: translate(-20vw);
+		}
+	}
+	#controls {
+		opacity: 0;
+		width: 23vw;
+		border: solid 2px var(--main-opp-color);
+		border-radius: 30px;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: start;
+		#set {
+			font-size: 2.3em;
+			text-align: center;
+			width: 3vw;
+			writing-mode: vertical-lr;
+			text-orientation: upright;
+		}
+		#content {
+			width: 20vw;
+			text-align: left;
+			padding-left: 1em;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			font-size: 0.9em;
+
+			button {
+				border: solid 1px var(--main-opp-color);
+				background-color: var(--main-color);
+				color: var(--main-opp-color);
+				width: 100px;
+				padding: 2em 2em;
+				border-radius: 10px;
+				margin: 10px 10px;
+				transition: background-color 0.1s, color 0.1s;
+				&:hover,
+				&:active {
+					background-color: var(--main-opp-color);
+					color: var(--main-color);
+				}
+			}
+
+			#themes #theme-select {
+				display: flex;
+				flex-direction: column;
+				button:last-of-type {
+					margin-bottom: 0;
+				}
+			}
+		}
+		// &:hover {
+		// 	transition: all 1s;
+		// 	transform: translate(17.5vw);
+		// }
+		animation: display-settings 0.5s $footer-enter-time forwards;
+		@keyframes display-settings {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+	}
+
+	#story {
+		opacity: 0;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 99%;
+		margin-left: 5px;
+		border: solid 2px var(--main-opp-color);
+		border-radius: 30px;
+		justify-content: flex-start;
+		animation: story-appear 0.7s $settings-appear-time forwards;
+		#story-input {
+			padding-top: 1%;
+			padding-left: 1%;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			height: 10%;
+
+			#text-input {
+				width: 90%;
+				background-color: var(--main-color);
+				border: solid 1px var(--main-opp-color);
+				color: var(--main-opp-color);
+				border-radius: 5px;
+				padding-left: 10px;
+				padding-right: 10px;
+				margin-right: 10px;
+				caret-color: transparent;
+			}
+
+			#submit {
+				border: none;
+				border-bottom: solid 2px var(--main-opp-color);
+				background-color: var(--main-color);
+				color: var(--main-opp-color);
+				width: 5%;
+				border-radius: 10px;
+				transition: background-color 0.1s, color 0.1s;
+				&:hover,
+				&:active {
+					background-color: var(--main-opp-color);
+					color: var(--main-color);
+				}
+			}
+		}
+
+		#output {
+			padding-top: 1%;
+			padding-left: 1%;
+			margin: 20px 20px;
+			border-radius: 5px;
+			min-height: 500%;
+			border: solid 1px var(--main-opp-color);
+		}
+
+		@keyframes story-appear {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+footer {
+	height: 10vh;
+	color: var(--main-opp-color);
+	z-index: -2;
+	background-color: var(--main-color);
+
+	transform: translate(-100vw);
+
+	-webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 1);
+
+	transition: all 0.2s;
+	&:hover {
+		background-color: var(--main-opp-color);
+		color: var(--main-color);
+	}
+
+	#names {
+		margin-top: 0;
+		padding-left: 0;
+		// padding-top: 25px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		list-style: none;
+		li {
+			opacity: 0;
+			padding-top: 25px;
+			padding-bottom: 28px;
+			flex-grow: 1;
+			text-align: center;
+			border-radius: 3px;
+			transition: background-color 0.1s, color 0.1s;
+			&:hover {
+				color: var(--main-opp-color);
+				background-color: var(--main-color);
+			}
+		}
+
+		#kush {
+			animation: appear $diff $story-appear-time forwards;
+		}
+		#ravi {
+			animation: appear $diff $kush forwards;
+		}
+		#shreyas {
+			animation: appear $diff $ravi forwards;
+		}
+		#nikheel {
+			animation: appear $diff $shreyas forwards;
+		}
+
+		@keyframes appear {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	}
+	animation: enter-footer 1s $content-enter-time forwards;
+	@keyframes enter-footer {
+		from {
+			transform: translate(-100vw);
+		}
+		to {
+			transform: translate(0);
+		}
+	}
+}

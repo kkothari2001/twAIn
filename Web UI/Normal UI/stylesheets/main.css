@@ -1,0 +1,399 @@
+:root {
+  --main-color: #010808;
+  --main-opp-color: #4cd93a;
+}
+
+body {
+  font-family: "Fira Mono", monospace;
+  margin: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  font-size: 5em;
+  line-height: 20vh;
+  color: var(--main-opp-color);
+  background-color: var(--main-color);
+  height: 20vh;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transform: translate(-100vw);
+          transform: translate(-100vw);
+  -webkit-animation: enter-title 1s forwards;
+          animation: enter-title 1s forwards;
+}
+
+header:hover {
+  height: 23vh;
+  line-height: 23vh;
+  background-color: var(--main-opp-color);
+  color: var(--main-color);
+}
+
+@-webkit-keyframes enter-title {
+  from {
+    -webkit-transform: translate(-100vw);
+            transform: translate(-100vw);
+  }
+  to {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+@keyframes enter-title {
+  from {
+    -webkit-transform: translate(-100vw);
+            transform: translate(-100vw);
+  }
+  to {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+main {
+  padding-top: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: var(--main-color);
+  color: var(--main-opp-color);
+  height: 70vh;
+  width: 120vw;
+  -webkit-transform: translate(100vw);
+          transform: translate(100vw);
+  -webkit-animation: enter-content 1s 1s forwards;
+          animation: enter-content 1s 1s forwards;
+}
+
+@-webkit-keyframes enter-content {
+  from {
+    -webkit-transform: translate(100vw);
+            transform: translate(100vw);
+  }
+  to {
+    -webkit-transform: translate(-20vw);
+            transform: translate(-20vw);
+  }
+}
+
+@keyframes enter-content {
+  from {
+    -webkit-transform: translate(100vw);
+            transform: translate(100vw);
+  }
+  to {
+    -webkit-transform: translate(-20vw);
+            transform: translate(-20vw);
+  }
+}
+
+main #controls {
+  opacity: 0;
+  width: 23vw;
+  border: solid 2px var(--main-opp-color);
+  border-radius: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-animation: display-settings 0.5s 3s forwards;
+          animation: display-settings 0.5s 3s forwards;
+}
+
+main #controls #set {
+  font-size: 2.3em;
+  text-align: center;
+  width: 3vw;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+
+main #controls #content {
+  width: 20vw;
+  text-align: left;
+  padding-left: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  font-size: 0.9em;
+}
+
+main #controls #content button {
+  border: solid 1px var(--main-opp-color);
+  background-color: var(--main-color);
+  color: var(--main-opp-color);
+  width: 100px;
+  padding: 2em 2em;
+  border-radius: 10px;
+  margin: 10px 10px;
+  -webkit-transition: background-color 0.1s, color 0.1s;
+  transition: background-color 0.1s, color 0.1s;
+}
+
+main #controls #content button:hover, main #controls #content button:active {
+  background-color: var(--main-opp-color);
+  color: var(--main-color);
+}
+
+main #controls #content #themes #theme-select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main #controls #content #themes #theme-select button:last-of-type {
+  margin-bottom: 0;
+}
+
+@-webkit-keyframes display-settings {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes display-settings {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+main #story {
+  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 99%;
+  margin-left: 5px;
+  border: solid 2px var(--main-opp-color);
+  border-radius: 30px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-animation: story-appear 0.7s 3.5s forwards;
+          animation: story-appear 0.7s 3.5s forwards;
+}
+
+main #story #story-input {
+  padding-top: 1%;
+  padding-left: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 10%;
+}
+
+main #story #story-input #text-input {
+  width: 90%;
+  background-color: var(--main-color);
+  border: solid 1px var(--main-opp-color);
+  color: var(--main-opp-color);
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 10px;
+  caret-color: transparent;
+}
+
+main #story #story-input #submit {
+  border: none;
+  border-bottom: solid 2px var(--main-opp-color);
+  background-color: var(--main-color);
+  color: var(--main-opp-color);
+  width: 5%;
+  border-radius: 10px;
+  -webkit-transition: background-color 0.1s, color 0.1s;
+  transition: background-color 0.1s, color 0.1s;
+}
+
+main #story #story-input #submit:hover, main #story #story-input #submit:active {
+  background-color: var(--main-opp-color);
+  color: var(--main-color);
+}
+
+main #story #output {
+  padding-top: 1%;
+  padding-left: 1%;
+  margin: 20px 20px;
+  border-radius: 5px;
+  min-height: 500%;
+  border: solid 1px var(--main-opp-color);
+}
+
+@-webkit-keyframes story-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes story-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+footer {
+  height: 10vh;
+  color: var(--main-opp-color);
+  z-index: -2;
+  background-color: var(--main-color);
+  -webkit-transform: translate(-100vw);
+          transform: translate(-100vw);
+  -webkit-box-shadow: 0px 0px 0px 1px black;
+  box-shadow: 0px 0px 0px 1px black;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-animation: enter-footer 1s 2s forwards;
+          animation: enter-footer 1s 2s forwards;
+}
+
+footer:hover {
+  background-color: var(--main-opp-color);
+  color: var(--main-color);
+}
+
+footer #names {
+  margin-top: 0;
+  padding-left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style: none;
+}
+
+footer #names li {
+  opacity: 0;
+  padding-top: 25px;
+  padding-bottom: 28px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  text-align: center;
+  border-radius: 3px;
+  -webkit-transition: background-color 0.1s, color 0.1s;
+  transition: background-color 0.1s, color 0.1s;
+}
+
+footer #names li:hover {
+  color: var(--main-opp-color);
+  background-color: var(--main-color);
+}
+
+footer #names #kush {
+  -webkit-animation: appear 0.5s 4.2s forwards;
+          animation: appear 0.5s 4.2s forwards;
+}
+
+footer #names #ravi {
+  -webkit-animation: appear 0.5s 4.7s forwards;
+          animation: appear 0.5s 4.7s forwards;
+}
+
+footer #names #shreyas {
+  -webkit-animation: appear 0.5s 5.2s forwards;
+          animation: appear 0.5s 5.2s forwards;
+}
+
+footer #names #nikheel {
+  -webkit-animation: appear 0.5s 5.7s forwards;
+          animation: appear 0.5s 5.7s forwards;
+}
+
+@-webkit-keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes enter-footer {
+  from {
+    -webkit-transform: translate(-100vw);
+            transform: translate(-100vw);
+  }
+  to {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+@keyframes enter-footer {
+  from {
+    -webkit-transform: translate(-100vw);
+            transform: translate(-100vw);
+  }
+  to {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+/*# sourceMappingURL=main.css.map */
