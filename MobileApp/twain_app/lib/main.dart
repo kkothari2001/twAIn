@@ -21,8 +21,14 @@ String sampleGeneratedStory = "He was the king of that place. Still he didn't kn
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
-      home: GUIPage(),
-    ));
+      initialRoute: '/gui',
+      routes: {
+        '/gui' : (context) => GUIPage(),
+        '/cli' : (context) => Home()
+      },
+    )
+    
+    );
 
 Map<String, String> commandsBook = {
   'help': 'Try \'ls\' and \'cd\' to navigate through the app.',
