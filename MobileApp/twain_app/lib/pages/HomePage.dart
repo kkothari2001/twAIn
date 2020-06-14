@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:twain_app/commons/HexColor.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +10,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: HexColor('141414'), // navigation bar color
+    ));
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

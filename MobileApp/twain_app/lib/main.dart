@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:twain_app/commons/HexColor.dart';
 import 'package:twain_app/model/command_model.dart';
 import 'package:twain_app/model/gen_model.dart';
