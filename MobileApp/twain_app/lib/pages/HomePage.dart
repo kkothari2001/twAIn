@@ -10,10 +10,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: HexColor('141414'), // navigation bar color
-    ));
+    
     return Scaffold(
+      backgroundColor: HexColor('141414'),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

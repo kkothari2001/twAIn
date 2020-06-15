@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:twain_app/pages/HomePage.dart';
+import 'package:twain_app/pages/SplashScreen.dart';
 import 'package:twain_app/pages/guiPage.dart';
 
 String aboutString = "This app is for the project being made by Team GoogleKarnaHamseSikho.\nWelcome to twAIn - A Story Generator powered by AI\n\nCreators :\n Ravi 🦉\n Kush 🐒\n Shreyas 🦊\n Nikheel 🦅\n\nMentors :\n Mehdi Patel\n Anuj Raghani\n Owais Hetavkar";
@@ -17,7 +18,8 @@ String sampleGeneratedStory = "He was the king of that place. Still he didn't kn
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
       routes: {
-        '/' : (context) => HomePage(),
+        '/' : (context) => SplashScreen(),
+        '/home' : (context) => HomePage(),
         '/gui' : (context) => GUIPage(),
         '/cli' : (context) => Home(),
       },
