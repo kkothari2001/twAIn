@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{{url_for('adventure')}}" method="get">
-        
-        <div class="form-group">
-            <h3>Daal be kush bhii</h3>
-          <label for="exampleInput">Input</label>
-          <input type="text" class="form-control" id="exampleInput" name="inputText">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      <a href="{{url_for('policy')}}">Privacy Policy</a>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>twAIn</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../static/main.css" />
+	</head>
+	<body>
+		<header id="header">twAIn_</header>
+		<main id="main">
+			<aside id="controls">
+				<div id="set">Settings</div>
+				<div id="content">
+					<div id="themes">
+						<h1>Select theme:</h1>
+						<div id="theme-select">
+							<button id="horror" onclick="horror();">Horror</button>
+							<button id="adventure"  onclick="adventure();">Adventure</button>
+							<button id="action"  onclick="action();">Action</button>
+						</div>
+					</div>
+					<div id="mode-select">
+						<h1>Select view mode:</h1>
+						<div id="views">
+							<button id="green" onclick="greenClick();">Green</button>
+							<button id="blue" onclick="blueClick();">Blue</button>
+						</div>
+					</div>
+				</div>
+			</aside>
+			<div id="story">
+				<div id="story-input">
+					<input type="text" id="text-input" />
+					<button id="submit">Submit</button>
+				</div>
+				<div id="story-output">
+					<p id="output">Output</p>
+				</div>
+			</div>
+		</main>
+		<footer id="footer">
+			<ul id="names">
+				<li id="kush">Kush</li>
+				<li id="ravi">Ravi</li>
+				<li id="shreyas">Shreyas</li>
+				<li id="nikheel">Nikheel</li>
+			</ul>
+		</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+		<script src="../static/script.js"></script>
+	</body>
 </html>

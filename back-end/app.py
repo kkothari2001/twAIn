@@ -1,9 +1,11 @@
 from flask import Flask
 from flask import url_for,render_template,request
+from flask_cors import CORS
 #from DataCleaner import Clean,Grammarize
 #from ModelDriver import generate
 
 app = Flask(__name__)
+CORS(app)
 
 PORT=8000
 TokenCount={  # Story Length (can be implemented later)
@@ -43,6 +45,9 @@ def adventure():
    API("adventure")
    return data
 
+@app.route('/demo',methods=['GET'])
+def demo():
+    return request.args["ID"]
     
 
 @app.route('/api/horror',methods=['GET'])   # the Model API horror endpoint
