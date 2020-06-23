@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
 import 'package:twain_app/commons/HexColor.dart';
 import 'package:twain_app/model/command_model.dart';
@@ -109,7 +110,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<String> fetchGeneratedStory() async{
-    final res = await http.get('https://thawing-springs-95929.herokuapp.com/api/adventure?inputText=$inputTextStory');
+    final res = await http.get('${DotEnv().env['URL']}api/gpt2?input=$inputTextStory');
     if(res.statusCode == 200){
       return (json.decode(res.body)['OutputStory']);
     }else{
@@ -180,7 +181,6 @@ class _HomeState extends State<Home> {
     
     if(genHistories.length == 2){
       genHistories[genHistories.length - 1].inputText = commandController.text;
-      print('-------------------------------------');
       print(genHistories[genHistories.length - 1].inputText);
       tempGen = GenModel(question: 'Story Length :', optionsText: '(Short, Medium, Long)', inputText: '_', type: 1);
     }else if(genHistories.length == 3){

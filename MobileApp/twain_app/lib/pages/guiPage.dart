@@ -1,5 +1,6 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:twain_app/commons/HexColor.dart';
@@ -34,7 +35,7 @@ class _GUIPageState extends State<GUIPage> {
     setState(() {
       _isLoadingStory = true;
     });
-    final res = await http.get('http://192.168.43.44:5000/api/gpt2?input=${_inputStoryContoller.text}');
+    final res = await http.get('${DotEnv().env['URL']}api/gpt2?input=${_inputStoryContoller.text}');
     if(res.statusCode == 200){
       String tempString = res.body;
       tempString.replaceAll(RegExp('_'), "");
@@ -282,6 +283,23 @@ class _GUIPageState extends State<GUIPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, '/about');
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        decoration: BoxDecoration(
+                          color: HexColor('2F2F2F'),
+                          borderRadius: BorderRadius.circular(10)
+                        ),
+                        padding: EdgeInsets.all(10),
+                        child: Center(child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Icon(Icons.more_horiz, color: HexColor('D8D8D8'),),
+                        ))
+                      ),
+                    ),
+                    InkWell(
                       onTap: (){speakOutput();},
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 5),
@@ -292,7 +310,7 @@ class _GUIPageState extends State<GUIPage> {
                         padding: EdgeInsets.all(10),
                         child: Center(child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: (_isSpeaking) ? SpinKitWave(size:22, color: HexColor('2F2F2F'),) : Icon(Icons.record_voice_over, color: HexColor('D8D8D8'),),
+                          child: (_isSpeaking) ? SpinKitWave(size:19, color: HexColor('2F2F2F'),) : Icon(Icons.record_voice_over, color: HexColor('D8D8D8'),),
                         ))
                       ),
                     ),
