@@ -28,3 +28,13 @@ txtinput.addEventListener("input", function () {
 		text = text + "_";
 	} else txtinput.value = text;
 });
+
+
+// Text to Speech
+const speakOnClick = (textInput) => {
+	const tts = window.speechSynthesis;
+	const toSpeak = new SpeechSynthesisUtterance(textInput);
+	const voiceName = window.speechSynthesis.getVoices()[0];
+	toSpeak.voice = voiceName;
+	tts.speak(toSpeak);
+}
