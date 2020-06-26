@@ -1,10 +1,11 @@
 :root {
   --main-color: #010808;
-  --main-opp-color: #4cd93a;
+  --main-opp-color: #60f14d;
 }
 
 body {
   font-family: "Fira Mono", monospace;
+  padding: 0;
   margin: 0;
   overflow-y: hidden;
   overflow-x: hidden;
@@ -17,6 +18,7 @@ header {
   color: var(--main-opp-color);
   background-color: var(--main-color);
   height: 20vh;
+  position: relative;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   -webkit-transform: translate(-100vw);
@@ -26,6 +28,7 @@ header {
 }
 
 header:hover {
+  letter-spacing: 10px;
   height: 23vh;
   line-height: 23vh;
   background-color: var(--main-opp-color);
@@ -55,7 +58,7 @@ header:hover {
 }
 
 main {
-  padding-top: 5px;
+  padding-top: 3px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,7 +70,7 @@ main {
   background-color: var(--main-color);
   color: var(--main-opp-color);
   height: 70vh;
-  width: 120vw;
+  width: 100%;
   -webkit-transform: translate(100vw);
           transform: translate(100vw);
   -webkit-animation: enter-content 1s 1s forwards;
@@ -80,8 +83,8 @@ main {
             transform: translate(100vw);
   }
   to {
-    -webkit-transform: translate(-20vw);
-            transform: translate(-20vw);
+    -webkit-transform: translate(0vw);
+            transform: translate(0vw);
   }
 }
 
@@ -91,16 +94,17 @@ main {
             transform: translate(100vw);
   }
   to {
-    -webkit-transform: translate(-20vw);
-            transform: translate(-20vw);
+    -webkit-transform: translate(0vw);
+            transform: translate(0vw);
   }
 }
 
 main #controls {
+  background-color: var(--main-color);
   opacity: 0;
-  width: 23vw;
+  width: 20%;
   border: solid 2px var(--main-opp-color);
-  border-radius: 30px;
+  border-radius: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,7 +122,7 @@ main #controls {
 main #controls #set {
   font-size: 2.3em;
   text-align: center;
-  width: 3vw;
+  width: 4vw;
   -webkit-writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
           writing-mode: vertical-lr;
@@ -126,9 +130,10 @@ main #controls #set {
 }
 
 main #controls #content {
-  width: 20vw;
+  width: 19vw;
   text-align: left;
   padding-left: 1em;
+  font-size: 0.9em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -147,9 +152,9 @@ main #controls #content button {
   background-color: var(--main-color);
   color: var(--main-opp-color);
   width: 100px;
-  padding: 2em 2em;
+  padding: 1em 1em;
   border-radius: 10px;
-  margin: 10px 10px;
+  margin: 10px 5px;
   -webkit-transition: background-color 0.1s, color 0.1s;
   transition: background-color 0.1s, color 0.1s;
 }
@@ -192,6 +197,7 @@ main #controls #content #themes #theme-select button:last-of-type {
 }
 
 main #story {
+  overflow: hidden;
   opacity: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -200,7 +206,7 @@ main #story {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 100%;
+  width: 80%;
   height: 99%;
   margin-left: 5px;
   border: solid 2px var(--main-opp-color);
@@ -229,23 +235,23 @@ main #story #story-input {
 }
 
 main #story #story-input #text-input {
-  width: 90%;
+  width: 85%;
   background-color: var(--main-color);
   border: solid 1px var(--main-opp-color);
   color: var(--main-opp-color);
   border-radius: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 1%;
+  padding-right: 1%;
   margin-right: 10px;
-  caret-color: transparent;
+  caret-color: var(--main-opp-color);
 }
 
 main #story #story-input #submit {
+  width: 15%;
   border: none;
   border-bottom: solid 2px var(--main-opp-color);
   background-color: var(--main-color);
   color: var(--main-opp-color);
-  width: 5%;
   border-radius: 10px;
   -webkit-transition: background-color 0.1s, color 0.1s;
   transition: background-color 0.1s, color 0.1s;
@@ -256,13 +262,14 @@ main #story #story-input #submit:hover, main #story #story-input #submit:active 
   color: var(--main-color);
 }
 
-main #story #output {
-  padding-top: 1%;
-  padding-left: 1%;
+main #story #story-output {
+  padding-top: 10px;
+  padding-left: 10px;
   margin: 20px 20px;
   border-radius: 5px;
-  min-height: 500%;
-  border: solid 1px var(--main-opp-color);
+  width: 95%;
+  height: 90%;
+  border: solid 2px var(--main-opp-color);
 }
 
 @-webkit-keyframes story-appear {
@@ -286,7 +293,6 @@ main #story #output {
 footer {
   height: 10vh;
   color: var(--main-opp-color);
-  z-index: -2;
   background-color: var(--main-color);
   -webkit-transform: translate(-100vw);
           transform: translate(-100vw);
@@ -395,5 +401,244 @@ footer #names #nikheel {
     -webkit-transform: translate(0);
             transform: translate(0);
   }
+}
+
+@media only screen and (max-width: 1100px) {
+  #content button {
+    padding: 1em 1em;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  main {
+    padding-top: 3px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    background-color: var(--main-color);
+    color: var(--main-opp-color);
+    height: 70vh;
+    width: 120vw;
+    -webkit-transform: translate(100vw);
+            transform: translate(100vw);
+    -webkit-animation: enter-content 1s 1s forwards;
+            animation: enter-content 1s 1s forwards;
+  }
+  @-webkit-keyframes enter-content {
+    from {
+      -webkit-transform: translate(100vw);
+              transform: translate(100vw);
+    }
+    to {
+      -webkit-transform: translate(-20vw);
+              transform: translate(-20vw);
+    }
+  }
+  @keyframes enter-content {
+    from {
+      -webkit-transform: translate(100vw);
+              transform: translate(100vw);
+    }
+    to {
+      -webkit-transform: translate(-20vw);
+              transform: translate(-20vw);
+    }
+  }
+  main #controls {
+    background-color: var(--main-color);
+    opacity: 0;
+    width: 26vw;
+    border: solid 2px var(--main-opp-color);
+    border-radius: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    position: relative;
+    z-index: 100;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    -webkit-animation: display-settings 0.5s 3s forwards;
+            animation: display-settings 0.5s 3s forwards;
+  }
+  main #controls #set {
+    font-size: 2.3em;
+    text-align: center;
+    width: 6vw;
+    -webkit-writing-mode: vertical-lr;
+        -ms-writing-mode: tb-lr;
+            writing-mode: vertical-lr;
+    text-orientation: upright;
+  }
+  main #controls #content {
+    width: 20vw;
+    text-align: left;
+    padding-left: 1em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    font-size: 0.7em;
+  }
+  main #controls #content button {
+    border: solid 1px var(--main-opp-color);
+    background-color: var(--main-color);
+    color: var(--main-opp-color);
+    width: 100px;
+    padding: 1em 1em;
+    border-radius: 10px;
+    margin: 10px 5px;
+    -webkit-transition: background-color 0.1s, color 0.1s;
+    transition: background-color 0.1s, color 0.1s;
+  }
+  main #controls #content button:hover, main #controls #content button:active {
+    background-color: var(--main-opp-color);
+    color: var(--main-color);
+  }
+  main #controls #content #themes #theme-select {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  main #controls #content #themes #theme-select button:last-of-type {
+    margin-bottom: 0;
+  }
+  main #controls:hover {
+    -webkit-transform: translate(20vw);
+            transform: translate(20vw);
+  }
+  @-webkit-keyframes display-settings {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes display-settings {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  main #story {
+    overflow: hidden;
+    opacity: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    height: 99%;
+    margin-left: 5px;
+    border: solid 2px var(--main-opp-color);
+    border-radius: 30px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-animation: story-appear 0.7s 3.5s forwards;
+            animation: story-appear 0.7s 3.5s forwards;
+  }
+  main #story #story-input {
+    padding-top: 1%;
+    padding-left: 1%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    height: 10%;
+  }
+  main #story #story-input #text-input {
+    width: 85%;
+    background-color: var(--main-color);
+    border: solid 1px var(--main-opp-color);
+    color: var(--main-opp-color);
+    border-radius: 5px;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-right: 10px;
+    caret-color: var(--main-opp-color);
+  }
+  main #story #story-input #submit {
+    width: 15%;
+    border: none;
+    border-bottom: solid 2px var(--main-opp-color);
+    background-color: var(--main-color);
+    color: var(--main-opp-color);
+    border-radius: 10px;
+    -webkit-transition: background-color 0.1s, color 0.1s;
+    transition: background-color 0.1s, color 0.1s;
+  }
+  main #story #story-input #submit:hover, main #story #story-input #submit:active {
+    background-color: var(--main-opp-color);
+    color: var(--main-color);
+  }
+  main #story #story-output {
+    padding-top: 10px;
+    padding-left: 10px;
+    margin: 20px 20px;
+    border-radius: 5px;
+    width: 95%;
+    height: 90%;
+    border: solid 2px var(--main-opp-color);
+  }
+  @-webkit-keyframes story-appear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes story-appear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+*::-moz-selection {
+  color: var(--main-color);
+  background-color: var(--main-opp-color);
+}
+
+*::selection {
+  color: var(--main-color);
+  background-color: var(--main-opp-color);
 }
 /*# sourceMappingURL=main.css.map */

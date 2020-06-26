@@ -10,13 +10,14 @@ $shreyas: $ravi + $diff;
 $nikheel: $shreyas + $diff;
 :root {
 	--main-color: #010808;
-	--main-opp-color: #4cd93a;
+	--main-opp-color: #60f14d;
 }
 
 // resets
 
 body {
 	font-family: "Fira Mono", monospace;
+	padding: 0;
 	margin: 0;
 	overflow-y: hidden; // hide vertical
 	overflow-x: hidden; // hide horizontal
@@ -32,10 +33,12 @@ header {
 	color: var(--main-opp-color);
 	background-color: var(--main-color);
 	height: 20vh;
+	position: relative;
 	transition: all 0.3s;
 	transform: translate(-100vw);
 	animation: enter-title 1s forwards;
 	&:hover {
+		letter-spacing: 10px;
 		height: 23vh;
 		line-height: 23vh;
 		background-color: var(--main-opp-color);
@@ -52,14 +55,14 @@ header {
 }
 
 main {
-	padding-top: 5px;
+	padding-top: 3px;
 	display: flex;
 	position: relative;
 	flex-direction: row;
 	background-color: var(--main-color);
 	color: var(--main-opp-color);
 	height: 70vh;
-	width: 120vw;
+	width: 100%;
 	transform: translate(100vw);
 	animation: enter-content 1s $header-enter-time forwards;
 	@keyframes enter-content {
@@ -67,28 +70,30 @@ main {
 			transform: translate(100vw);
 		}
 		to {
-			transform: translate(-20vw);
+			transform: translate(0vw);
 		}
 	}
 	#controls {
+		background-color: var(--main-color);
 		opacity: 0;
-		width: 23vw;
+		width: 20%;
 		border: solid 2px var(--main-opp-color);
-		border-radius: 30px;
+		border-radius: 40px;
 		display: flex;
 		flex-direction: row-reverse;
 		justify-content: start;
 		#set {
 			font-size: 2.3em;
 			text-align: center;
-			width: 3vw;
+			width: 4vw;
 			writing-mode: vertical-lr;
 			text-orientation: upright;
 		}
 		#content {
-			width: 20vw;
+			width: 19vw;
 			text-align: left;
 			padding-left: 1em;
+			font-size: 0.9em;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-evenly;
@@ -99,9 +104,9 @@ main {
 				background-color: var(--main-color);
 				color: var(--main-opp-color);
 				width: 100px;
-				padding: 2em 2em;
+				padding: 1em 1em;
 				border-radius: 10px;
-				margin: 10px 10px;
+				margin: 10px 5px;
 				transition: background-color 0.1s, color 0.1s;
 				&:hover,
 				&:active {
@@ -118,10 +123,6 @@ main {
 				}
 			}
 		}
-		// &:hover {
-		// 	transition: all 1s;
-		// 	transform: translate(17.5vw);
-		// }
 		animation: display-settings 0.5s $footer-enter-time forwards;
 		@keyframes display-settings {
 			from {
@@ -135,10 +136,11 @@ main {
 	}
 
 	#story {
+		overflow: hidden;
 		opacity: 0;
 		display: flex;
 		flex-direction: column;
-		width: 100%;
+		width: 80%;
 		height: 99%;
 		margin-left: 5px;
 		border: solid 2px var(--main-opp-color);
@@ -154,23 +156,23 @@ main {
 			height: 10%;
 
 			#text-input {
-				width: 90%;
+				width: 85%;
 				background-color: var(--main-color);
 				border: solid 1px var(--main-opp-color);
 				color: var(--main-opp-color);
 				border-radius: 5px;
-				padding-left: 10px;
-				padding-right: 10px;
+				padding-left: 1%;
+				padding-right: 1%;
 				margin-right: 10px;
-				caret-color: transparent;
+				caret-color: var(--main-opp-color);
 			}
 
 			#submit {
+				width: 15%;
 				border: none;
 				border-bottom: solid 2px var(--main-opp-color);
 				background-color: var(--main-color);
 				color: var(--main-opp-color);
-				width: 5%;
 				border-radius: 10px;
 				transition: background-color 0.1s, color 0.1s;
 				&:hover,
@@ -181,13 +183,14 @@ main {
 			}
 		}
 
-		#output {
-			padding-top: 1%;
-			padding-left: 1%;
+		#story-output {
+			padding-top: 10px;
+			padding-left: 10px;
 			margin: 20px 20px;
 			border-radius: 5px;
-			min-height: 500%;
-			border: solid 1px var(--main-opp-color);
+			width: 95%;
+			height: 90%;
+			border: solid 2px var(--main-opp-color);
 		}
 
 		@keyframes story-appear {
@@ -204,7 +207,7 @@ main {
 footer {
 	height: 10vh;
 	color: var(--main-opp-color);
-	z-index: -2;
+	// z-index: -2;
 	background-color: var(--main-color);
 
 	transform: translate(-100vw);
@@ -272,4 +275,174 @@ footer {
 			transform: translate(0);
 		}
 	}
+}
+
+@media only screen and (max-width: 1100px) {
+	#content {
+		button {
+			padding: 1em 1em;
+		}
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	main {
+		padding-top: 3px;
+		display: flex;
+		position: relative;
+		flex-direction: row;
+		background-color: var(--main-color);
+		color: var(--main-opp-color);
+		height: 70vh;
+		width: 120vw;
+		transform: translate(100vw);
+		animation: enter-content 1s $header-enter-time forwards;
+		@keyframes enter-content {
+			from {
+				transform: translate(100vw);
+			}
+			to {
+				transform: translate(-20vw);
+			}
+		}
+		#controls {
+			background-color: var(--main-color);
+			opacity: 0;
+			width: 26vw;
+			border: solid 2px var(--main-opp-color);
+			border-radius: 40px;
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: start;
+			position: relative;
+			z-index: 100;
+			transition: all 0.2s;
+			#set {
+				font-size: 2.3em;
+				text-align: center;
+				width: 6vw;
+				writing-mode: vertical-lr;
+				text-orientation: upright;
+			}
+			#content {
+				width: 20vw;
+				text-align: left;
+				padding-left: 1em;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-evenly;
+				font-size: 0.7em;
+
+				button {
+					border: solid 1px var(--main-opp-color);
+					background-color: var(--main-color);
+					color: var(--main-opp-color);
+					width: 100px;
+					padding: 1em 1em;
+					border-radius: 10px;
+					margin: 10px 5px;
+					transition: background-color 0.1s, color 0.1s;
+					&:hover,
+					&:active {
+						background-color: var(--main-opp-color);
+						color: var(--main-color);
+					}
+				}
+
+				#themes #theme-select {
+					display: flex;
+					flex-direction: column;
+					button:last-of-type {
+						margin-bottom: 0;
+					}
+				}
+			}
+			&:hover {
+				transform: translate(20vw);
+			}
+			animation: display-settings 0.5s $footer-enter-time forwards;
+			@keyframes display-settings {
+				from {
+					opacity: 0;
+				}
+
+				to {
+					opacity: 1;
+				}
+			}
+		}
+
+		#story {
+			overflow: hidden;
+			opacity: 0;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 99%;
+			margin-left: 5px;
+			border: solid 2px var(--main-opp-color);
+			border-radius: 30px;
+			justify-content: flex-start;
+			animation: story-appear 0.7s $settings-appear-time forwards;
+			#story-input {
+				padding-top: 1%;
+				padding-left: 1%;
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				height: 10%;
+
+				#text-input {
+					width: 85%;
+					background-color: var(--main-color);
+					border: solid 1px var(--main-opp-color);
+					color: var(--main-opp-color);
+					border-radius: 5px;
+					padding-left: 1%;
+					padding-right: 1%;
+					margin-right: 10px;
+					caret-color: var(--main-opp-color);
+				}
+
+				#submit {
+					width: 15%;
+					border: none;
+					border-bottom: solid 2px var(--main-opp-color);
+					background-color: var(--main-color);
+					color: var(--main-opp-color);
+					border-radius: 10px;
+					transition: background-color 0.1s, color 0.1s;
+					&:hover,
+					&:active {
+						background-color: var(--main-opp-color);
+						color: var(--main-color);
+					}
+				}
+			}
+
+			#story-output {
+				padding-top: 10px;
+				padding-left: 10px;
+				margin: 20px 20px;
+				border-radius: 5px;
+				width: 95%;
+				height: 90%;
+				border: solid 2px var(--main-opp-color);
+			}
+
+			@keyframes story-appear {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+*::selection {
+	color: var(--main-color);
+	background-color: var(--main-opp-color);
 }
