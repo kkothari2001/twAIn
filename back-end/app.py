@@ -23,6 +23,18 @@ data={           # the API response
     "OutputStory":""
 }
 
+def SampleStoryReader(genre):
+    url="Genstories/"+genre+".txt"
+    f = open(file=url,mode="r",encoding="utf8")
+    StoryList=(f.readlines())
+    Story=""
+    for i in range(0,len(StoryList)):
+        Story=Story+StoryList[i]+"\n"
+
+    f.close()
+    # print(StoryList)
+    return Story
+
 def API(genre):  # API handler function
     data["Genre"]=genre
     text = request.args["inputText"]
@@ -30,7 +42,12 @@ def API(genre):  # API handler function
     # data["InputStory"]=Grammarize(Clean(text))            # calling Data cleaning module
     data["InputStory"]=text             # only for gpt-2 model 
     # data["OutputStory"]=generate(data["InputStory"],genre)  # the text will be passed on to the model and the response will be sent back  
-    data["OutputStory"]=text*50  # just for demo 
+
+    if (text!="sample"):
+        data["OutputStory"]=text*50  # just for demo 
+    else:
+        data["OutputStory"]=SampleStoryReader(genre) 
+
     data["WordsCount"]=len(data["OutputStory"].split())
     data["TokenCount"]=len(data["OutputStory"])
 
@@ -45,22 +62,30 @@ def adventure():
    API("adventure")
    return data
 
-@app.route('/demo',methods=['GET'])
-def demo():
-    return request.args["ID"]
-    
-
 @app.route('/api/horror',methods=['GET'])   # the Model API horror endpoint
 def horror():
     API("horror")
     return data
 
-
-
-@app.route('/api/action',methods=['GET'])   # the Model API action endpoint
+@app.route('/api/mystery',methods=['GET'])   # the Model API action endpoint
 def action():
-    API("action")
+    API("mystery")
     return data
+
+# @app.route('/api/adventure/sample',methods=['GET'])   # the Model API adventure endpoint
+# def adventure():
+#    API("adventure","sample")
+#    return data
+
+# @app.route('/api/horror/sample',methods=['GET'])   # the Model API horror endpoint
+# def horror():
+#     API("horror","sample")
+#     return data
+
+# @app.route('/api/mystery/sample',methods=['GET'])   # the Model API action endpoint
+# def action():
+#     API("mystery","sample")
+#     return data
 
 @app.route('/privacy-policy')
 def policy():
