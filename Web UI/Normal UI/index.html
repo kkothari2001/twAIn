@@ -8,6 +8,10 @@
 			href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
 			rel="stylesheet"
 		/>
+		<script
+			src="https://kit.fontawesome.com/fe8e44124d.js"
+			crossorigin="anonymous"
+		></script>
 		<link rel="stylesheet" href="stylesheets/main.css" />
 	</head>
 	<body>
@@ -36,10 +40,17 @@
 			<div id="story">
 				<div id="story-input">
 					<input type="text" id="text-input" />
-					<button id="submit">Submit</button>
+					<button id="submit" onclick="loading()">Submit</button>
+					<button id="tts" onclick="speakStory();">
+						<i class="fas fa-volume-up"></i>
+					</button>
 				</div>
 				<div id="story-output">
-					<p id="output">Output</p>
+					<div class="loadingio-spinner-eclipse-2we2o8onnes" id="loading-icon">
+						<div class="ldio-6hi50wurrob">
+							<div></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</main>

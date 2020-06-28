@@ -1,6 +1,6 @@
 :root {
   --main-color: #010808;
-  --main-opp-color: #60f14d;
+  --main-opp-color: #69ff56;
 }
 
 body {
@@ -133,7 +133,9 @@ main #controls #content {
   width: 19vw;
   text-align: left;
   padding-left: 1em;
-  font-size: 0.9em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -144,7 +146,25 @@ main #controls #content {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  font-size: 0.9em;
+  font-size: 0.8em;
+}
+
+main #controls #content::-webkit-scrollbar {
+  width: 0.2em;
+  background-color: var(--main-color);
+}
+
+main #controls #content::-webkit-scrollbar-track {
+  background-color: var(--main-color);
+}
+
+main #controls #content::-webkit-scrollbar-thumb {
+  background-color: var(--main-opp-color);
+  border-radius: 200px;
+}
+
+main #controls #content::-webkit-scrollbar-corner {
+  background-color: var(--main-color);
 }
 
 main #controls #content button {
@@ -219,8 +239,7 @@ main #story {
 }
 
 main #story #story-input {
-  padding-top: 1%;
-  padding-left: 1%;
+  padding: 1%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -228,14 +247,14 @@ main #story #story-input {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   height: 10%;
 }
 
 main #story #story-input #text-input {
-  width: 85%;
+  width: 70%;
   background-color: var(--main-color);
   border: solid 1px var(--main-opp-color);
   color: var(--main-opp-color);
@@ -246,8 +265,8 @@ main #story #story-input #text-input {
   caret-color: var(--main-opp-color);
 }
 
-main #story #story-input #submit {
-  width: 15%;
+main #story #story-input button {
+  width: 10%;
   border: none;
   border-bottom: solid 2px var(--main-opp-color);
   background-color: var(--main-color);
@@ -257,19 +276,38 @@ main #story #story-input #submit {
   transition: background-color 0.1s, color 0.1s;
 }
 
-main #story #story-input #submit:hover, main #story #story-input #submit:active {
+main #story #story-input button:hover, main #story #story-input button:active {
   background-color: var(--main-opp-color);
   color: var(--main-color);
 }
 
 main #story #story-output {
-  padding-top: 10px;
-  padding-left: 10px;
-  margin: 20px 20px;
+  overflow: scroll;
+  padding: 20px;
+  margin: 10px auto;
   border-radius: 5px;
-  width: 95%;
+  font-size: 1.2em;
+  width: 90%;
   height: 90%;
   border: solid 2px var(--main-opp-color);
+}
+
+main #story #story-output::-webkit-scrollbar {
+  width: 0.4em;
+  background-color: var(--main-color);
+}
+
+main #story #story-output::-webkit-scrollbar-track {
+  background-color: var(--main-color);
+}
+
+main #story #story-output::-webkit-scrollbar-thumb {
+  background-color: var(--main-opp-color);
+  border-radius: 200px;
+}
+
+main #story #story-output::-webkit-scrollbar-corner {
+  background-color: var(--main-color);
 }
 
 @-webkit-keyframes story-appear {
@@ -473,7 +511,7 @@ footer #names #nikheel {
             animation: display-settings 0.5s 3s forwards;
   }
   main #controls #set {
-    font-size: 2.3em;
+    font-size: 2.2em;
     text-align: center;
     width: 6vw;
     -webkit-writing-mode: vertical-lr;
@@ -575,13 +613,14 @@ footer #names #nikheel {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
     height: 10%;
   }
   main #story #story-input #text-input {
-    width: 85%;
+    width: 70%;
+    height: 100%;
     background-color: var(--main-color);
     border: solid 1px var(--main-opp-color);
     color: var(--main-opp-color);
@@ -591,8 +630,8 @@ footer #names #nikheel {
     margin-right: 10px;
     caret-color: var(--main-opp-color);
   }
-  main #story #story-input #submit {
-    width: 15%;
+  main #story #story-input button {
+    width: 8%;
     border: none;
     border-bottom: solid 2px var(--main-opp-color);
     background-color: var(--main-color);
@@ -601,7 +640,7 @@ footer #names #nikheel {
     -webkit-transition: background-color 0.1s, color 0.1s;
     transition: background-color 0.1s, color 0.1s;
   }
-  main #story #story-input #submit:hover, main #story #story-input #submit:active {
+  main #story #story-input button:hover, main #story #story-input button:active {
     background-color: var(--main-opp-color);
     color: var(--main-color);
   }
@@ -609,6 +648,7 @@ footer #names #nikheel {
     padding-top: 10px;
     padding-left: 10px;
     margin: 20px 20px;
+    font-size: 1.3em;
     border-radius: 5px;
     width: 95%;
     height: 90%;
@@ -641,4 +681,81 @@ footer #names #nikheel {
   color: var(--main-color);
   background-color: var(--main-opp-color);
 }
+
+@-webkit-keyframes ldio-6hi50wurrob {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes ldio-6hi50wurrob {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.ldio-6hi50wurrob div {
+  position: absolute;
+  -webkit-animation: ldio-6hi50wurrob 1s linear infinite;
+          animation: ldio-6hi50wurrob 1s linear infinite;
+  width: 112px;
+  height: 112px;
+  top: 44px;
+  left: 44px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 4px 0 0 var(--main-opp-color);
+          box-shadow: 0 4px 0 0 var(--main-opp-color);
+  -webkit-transform-origin: 56px 58px;
+          transform-origin: 56px 58px;
+}
+
+.loadingio-spinner-eclipse-2we2o8onnes {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  overflow: hidden;
+  background: #010808;
+  display: none;
+}
+
+.ldio-6hi50wurrob {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transform: translateZ(0) scale(1);
+          transform: translateZ(0) scale(1);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  /* see note above */
+}
+
+.ldio-6hi50wurrob div {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+/* generated by https://loading.io/ */
 /*# sourceMappingURL=main.css.map */
