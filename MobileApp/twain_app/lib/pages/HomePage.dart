@@ -24,9 +24,9 @@ class _HomePageState extends State<HomePage> {
             Container(
               height: MediaQuery.of(context).size.height * 0.3,
               child: Center(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text('twAIn_',
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Firacode',
                               color: HexColor('22F52A'))),
-                    ),
+                      ),
                     Text('An AI that writes stories.',
                       style: TextStyle(
                         fontSize: 16,
@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Container(
                           decoration: BoxDecoration(
-                              color: HexColor('2F2F2F'),
-                              borderRadius: BorderRadius.circular(10.0)),
+                          color: HexColor('2F2F2F'),
+                          borderRadius: BorderRadius.circular(10.0)),
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
@@ -91,7 +91,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                          )),
+                          )
+                        ),
                       SizedBox(height: 10.0),
                       Container(
                           decoration: BoxDecoration(
@@ -132,7 +133,8 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )),
                     ],
-                  )),
+                  )
+                ),
             ),
             Container(
                 height: MediaQuery.of(context).size.height * 0.2,
@@ -165,7 +167,10 @@ class _HomePageState extends State<HomePage> {
                                   color: HexColor('22F52A'))),
                         ],
                       )
-                    ]))),
+                    ]
+                  )
+                )
+              ),
           ],
         )
       ),

@@ -114,7 +114,10 @@ class AboutPage extends StatelessWidget {
                                   color: HexColor('22F52A'))),
                         ],
                       )
-                    ]))),
+                    ]
+                  )
+                )
+              ),
           ],
         ),
       ),
