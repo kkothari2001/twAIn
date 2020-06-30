@@ -3,16 +3,37 @@
   --main-opp-color: #69ff56;
 }
 
+#pertag
+{
+color: #69ff56;
+text-align:center;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: #000000;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #69ff56;
+}
+
+ul{
+  list-style: none;
+}
+
+button {
+  outline: none;
+}
+
 body {
   font-family: "Fira Mono", monospace;
   padding: 0;
   margin: 0;
   overflow-y: hidden;
   overflow-x: hidden;
-}
-
-ul {
-  list-style-type: none;
 }
 
 header {
@@ -116,17 +137,18 @@ main #controls {
   -webkit-box-direction: reverse;
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-animation: display-settings 0.5s 3s forwards;
           animation: display-settings 0.5s 3s forwards;
 }
 
 main #controls #set {
   font-size: 2.3em;
+  padding-right: 10px;
   text-align: center;
-  width: 4vw;
+  width: 15%;
   -webkit-writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
           writing-mode: vertical-lr;
@@ -134,11 +156,10 @@ main #controls #set {
 }
 
 main #controls #content {
-  width: 19vw;
+  width: 85%;
   text-align: left;
   padding-left: 1em;
   overflow-y: scroll;
-  overflow-x: hidden;
   margin: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -147,25 +168,10 @@ main #controls #content {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   font-size: 0.8em;
-}
-
-main #controls #content::-webkit-scrollbar {
-  width: 0.2em;
-  background-color: var(--main-color);
-}
-
-main #controls #content::-webkit-scrollbar-track {
-  background-color: var(--main-color);
-}
-
-main #controls #content::-webkit-scrollbar-thumb {
-  background-color: var(--main-opp-color);
-  border-radius: 200px;
-}
-
-main #controls #content::-webkit-scrollbar-corner {
-  background-color: var(--main-color);
 }
 
 main #controls #content button {
@@ -185,18 +191,34 @@ main #controls #content button:hover, main #controls #content button:active {
   color: var(--main-color);
 }
 
-main #controls #content #themes #theme-select {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+main #controls #content button.active {
+  border: solid 1px var(--main-opp-color);
+  color: var(--main-color);
+  background-color: var(--main-opp-color);
+  width: 100px;
+  padding: 1em 1em;
+  border-radius: 10px;
+  margin: 10px 5px;
+  -webkit-transition: background-color 0.1s, color 0.1s;
+  transition: background-color 0.1s, color 0.1s;
 }
 
-main #controls #content #themes #theme-select button:last-of-type {
-  margin-bottom: 0;
+main #controls #content::-webkit-scrollbar {
+  width: 0.2em;
+  background-color: var(--main-color);
+}
+
+main #controls #content::-webkit-scrollbar-track {
+  background-color: var(--main-color);
+}
+
+main #controls #content::-webkit-scrollbar-thumb {
+  background-color: var(--main-opp-color);
+  border-radius: 200px;
+}
+
+main #controls #content::-webkit-scrollbar-corner {
+  background-color: var(--main-color);
 }
 
 @-webkit-keyframes display-settings {
@@ -294,7 +316,7 @@ main #story #story-output {
 }
 
 main #story #story-output::-webkit-scrollbar {
-  width: 0.4em;
+  width: 0.3em;
   background-color: var(--main-color);
 }
 
@@ -531,9 +553,6 @@ footer #names #nikheel {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
     font-size: 0.7em;
   }
   main #controls #content button {
@@ -732,11 +751,11 @@ footer #names #nikheel {
   width: 200px;
   height: 200px;
   display: inline-block;
-  position: absolute;
+  position: relative;
   top: 35%;
   left: 50%;
   overflow: hidden;
-  background: #010808;
+  background: none;  /*#010808*/
   display: none;
 }
 

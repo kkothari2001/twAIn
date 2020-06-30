@@ -23,7 +23,7 @@ data={           # the API response
     "OutputStory":""
 }
 
-def SampleStoryReader(genre):
+def SampleStoryReader(genre,length):
     url="Genstories/"+genre+".txt"
     f = open(file=url,mode="r",encoding="utf8")
     StoryList=(f.readlines())
@@ -33,11 +33,13 @@ def SampleStoryReader(genre):
 
     f.close()
     # print(StoryList)
+    # Story="<p>"+Story+"</p>"
     return Story
 
 def API(genre):  # API handler function
     data["Genre"]=genre
     text = request.args["inputText"]
+    length=request.args["length"]
     text=(text.lstrip()).rstrip()
     # data["InputStory"]=Grammarize(Clean(text))            # calling Data cleaning module
     data["InputStory"]=text             # only for gpt-2 model 
@@ -46,7 +48,7 @@ def API(genre):  # API handler function
     if (text!="sample"):
         data["OutputStory"]=text*50  # just for demo 
     else:
-        data["OutputStory"]=SampleStoryReader(genre) 
+        data["OutputStory"]=SampleStoryReader(genre,length) 
 
     data["WordsCount"]=len(data["OutputStory"].split())
     data["TokenCount"]=len(data["OutputStory"])

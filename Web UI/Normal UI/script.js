@@ -1,19 +1,20 @@
 let theme = "green";
 let genre = "adventure";
 let length = "medium";
+var i=0;
 
 function adventure() {
 	if (genre !== "adventure") {
 		let adventureb = document.getElementById("adventure");
 		let horrorb = document.getElementById("horror");
-		let actionb = document.getElementById("action");
+		let mysteryb = document.getElementById("mystery");
 		adventureb.classList.add("active");
 		if (horrorb.classList.contains("active")) {
 			horrorb.classList.remove("active");
 		}
 
-		if (actionb.classList.contains("active")) {
-			actionb.classList.remove("active");
+		if (mysteryb.classList.contains("active")) {
+			mysteryb.classList.remove("active");
 		}
 		genre = "adventure";
 		console.log(genre);
@@ -24,26 +25,26 @@ function horror() {
 	if (genre !== "horror") {
 		let adventureb = document.getElementById("adventure");
 		let horrorb = document.getElementById("horror");
-		let actionb = document.getElementById("action");
+		let mysteryb = document.getElementById("mystery");
 		horrorb.classList.add("active");
 		if (adventureb.classList.contains("active")) {
 			adventureb.classList.remove("active");
 		}
 
-		if (actionb.classList.contains("active")) {
-			actionb.classList.remove("active");
+		if (mysteryb.classList.contains("active")) {
+			mysteryb.classList.remove("active");
 		}
 		genre = "horror";
 		console.log(genre);
 	}
 }
 
-function action() {
-	if (genre !== "action") {
+function mystery() {
+	if (genre !== "mystery") {
 		let adventureb = document.getElementById("adventure");
 		let horrorb = document.getElementById("horror");
-		let actionb = document.getElementById("action");
-		actionb.classList.add("active");
+		let mysteryb = document.getElementById("mystery");
+		mysteryb.classList.add("active");
 		if (horrorb.classList.contains("active")) {
 			horrorb.classList.remove("active");
 		}
@@ -51,7 +52,7 @@ function action() {
 		if (adventureb.classList.contains("active")) {
 			adventureb.classList.remove("active");
 		}
-		genre = "action";
+		genre = "mystery";
 		console.log(genre);
 	}
 }
@@ -133,21 +134,51 @@ function long() {
 	}
 }
 
-// let main = document.getElementById("main");
-// let side = document.getElementById("controls");
 
-// side.addEventListener("mouseenter", function () {
-// 	side.style.setProperty("left", "19vw");
-// });
-// side.addEventListener("mouseleave", function () {
-// 	side.style.setProperty("left", "0vw");
-// });
+
+
+var submit=document.getElementById("submit");
+var url='http://127.0.0.1:8000/api/'+genre;
+ 
+submit.addEventListener("click",function(){
+
+	document.getElementById("story-output").innerHTML="<div class=\"mainload\"><div class=\"loadingio-spinner-eclipse-2we2o8onnes\" id=\"loading-icon\"> <div class=\"ldio-6hi50wurrob\"><div></div></div></div><div id=\"myProgress\"><div id=\"myBar\"></div><h4 id=\"pertag\">0.0 %</h4></div></div>"
+	setTimeout(function () {
+	loading();
+	}, 1000);
+
+	if (document.getElementById("text-input").value=="")
+	{
+		document.getElementById("story-output").innerHTML="PLEASE ENTER A PHRASE ABOVE TO GET STARTED!"
+	}
+	else if (document.getElementById("text-input").value=="help")
+	{
+		document.getElementById("story-output").innerHTML="<ul><li>1) SELECT A GENRE</li><li> </li><li>2) PLEASE ENTER A PHRASE ABOVE AND CLICK SUBMIT</li><li>OR</li><li>ENTER \"sample\" ABOVE TO GET A SAMPLE RANDOM STORY</li><li></li><li>3) TYPE \"help\" TO SHOW THIS PAGE AGAIN</li></ul>"
+	}
+	
+	else{
+    axios.get(url,{
+		params: {
+		  inputText: document.getElementById("text-input").value,
+		  length: length	
+		}
+	  })
+    .then(response =>{
+		// var data=process((response.data)["OutputStory"]);
+		setTimeout(function () {
+			var data=(response.data)["OutputStory"];
+			document.getElementById("story-output").innerHTML="<pre>"+(data)+"</pre>";
+		}, 1000000);
+		
+  
+    })
+	.catch(error => document.getElementById("story-output").innerHTML="OOPS! SOMETHING WENT WRONG :(");
+}
+})
 
 // Text to Speech
 function speakStory() {
-	let story = document.getElementById("story-output").innerHTML;
-	console.log(story);
-
+	let story = document.getElementById("story-output").innerText;
 	if (story == "") {
 		speakOnClick("Hello I'm Twain! I write awesome stories!");
 	} else {
@@ -164,9 +195,29 @@ const speakOnClick = (textInput) => {
 };
 
 function loading() {
+	// spinner
 	let load = document.getElementById("loading-icon");
 	load.style.display = "initial";
-	setTimeout(function () {
-		load.style.display = "none";
-	}, 1000);
+	document.getElementById("pertag").innerText="0.0 %"
+	// progress bar
+	if (i == 0) {
+		i = 1;
+		// var elem = document.getElementById("myBar");
+		var width = 1;
+		var id = setInterval(frame, 10);
+		function frame() {
+		  if (width >= 100) {
+			clearInterval(id);
+			i = 0;
+		  } else {
+			width=width+0.01; 
+			document.getElementById("pertag").innerText=width.toFixed(1)+" %";
+			// console.log((Math.round(width)).toString())
+			// console.log(document.getElementById("myBar").style.width)
+			document.getElementById("myBar").style.width = (Math.round(width)).toString()+"%";
+
+		  }
+		}
+	  }
+	  
 }
