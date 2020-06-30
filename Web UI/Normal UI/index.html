@@ -23,16 +23,30 @@
 					<div id="themes">
 						<h1>Select theme:</h1>
 						<div id="theme-select">
-							<button id="horror">Horror</button>
-							<button id="adventure">Adventure</button>
-							<button id="action">Action</button>
+							<button id="adventure" class="active" onclick="adventure();">
+								Adventure
+							</button>
+							<button id="horror" onclick="horror();">Horror</button>
+							<button id="action" onclick="action();">Action</button>
 						</div>
 					</div>
 					<div id="mode-select">
 						<h1>Select view mode:</h1>
 						<div id="views">
-							<button id="green" onclick="greenClick();">Green</button>
+							<button id="green" class="active" onclick="greenClick();">
+								Green
+							</button>
 							<button id="blue" onclick="blueClick();">Blue</button>
+						</div>
+					</div>
+					<div id="length-select">
+						<h1>Select length:</h1>
+						<div id="length">
+							<button id="short" onclick="short();">Short</button>
+							<button id="medium" class="active" onclick="medium();">
+								Medium
+							</button>
+							<button id="long" onclick="long();">Long</button>
 						</div>
 					</div>
 				</div>

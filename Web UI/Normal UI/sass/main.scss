@@ -14,7 +14,9 @@ $nikheel: $shreyas + $diff;
 }
 
 // resets
-
+button {
+	outline: none;
+}
 body {
 	font-family: "Fira Mono", monospace;
 	padding: 0;
@@ -81,42 +83,25 @@ main {
 		border-radius: 40px;
 		display: flex;
 		flex-direction: row-reverse;
-		justify-content: start;
+		justify-content: space-evenly;
 		#set {
 			font-size: 2.3em;
+			padding-right: 10px;
 			text-align: center;
-			width: 4vw;
+			width: 15%;
 			writing-mode: vertical-lr;
 			text-orientation: upright;
 		}
 		#content {
-			width: 19vw;
+			width: 85%;
 			text-align: left;
 			padding-left: 1em;
 			overflow-y: scroll;
-			overflow-x: hidden;
 			margin: 1em;
 			display: flex;
 			flex-direction: column;
-			justify-content: space-evenly;
+			justify-content: flex-start;
 			font-size: 0.8em;
-
-			&::-webkit-scrollbar {
-				width: 0.2em;
-				background-color: var(--main-color);
-			}
-
-			&::-webkit-scrollbar-track {
-				background-color: var(--main-color);
-			}
-
-			&::-webkit-scrollbar-thumb {
-				background-color: var(--main-opp-color);
-				border-radius: 200px;
-			}
-			&::-webkit-scrollbar-corner {
-				background-color: var(--main-color);
-			}
 
 			button {
 				border: solid 1px var(--main-opp-color);
@@ -134,12 +119,45 @@ main {
 				}
 			}
 
-			#themes #theme-select {
-				display: flex;
-				flex-direction: column;
-				button:last-of-type {
-					margin-bottom: 0;
-				}
+			button.active {
+				border: solid 1px var(--main-opp-color);
+				color: var(--main-color);
+				background-color: var(--main-opp-color);
+				width: 100px;
+				padding: 1em 1em;
+				border-radius: 10px;
+				margin: 10px 5px;
+				transition: background-color 0.1s, color 0.1s;
+				// &:hover,
+				// &:active {
+				// 	color: var(--main-opp-color);
+				// 	background-color: var(--main-color);
+				// }
+			}
+
+			// #themes #theme-select {
+			// 	display: flex;
+			// 	flex-direction: column;
+			// 	button:last-of-type {
+			// 		margin-bottom: 0;
+			// 	}
+			// }
+
+			&::-webkit-scrollbar {
+				width: 0.2em;
+				background-color: var(--main-color);
+			}
+
+			&::-webkit-scrollbar-track {
+				background-color: var(--main-color);
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background-color: var(--main-opp-color);
+				border-radius: 200px;
+			}
+			&::-webkit-scrollbar-corner {
+				background-color: var(--main-color);
 			}
 		}
 		animation: display-settings 0.5s $footer-enter-time forwards;
@@ -212,7 +230,7 @@ main {
 			border: solid 2px var(--main-opp-color);
 
 			&::-webkit-scrollbar {
-				width: 0.4em;
+				width: 0.3em;
 				background-color: var(--main-color);
 			}
 
