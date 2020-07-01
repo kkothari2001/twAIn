@@ -1,21 +1,19 @@
-#pertag
-{
-color: #69ff56;
-text-align:center;
+#pertag {
+	color: #69ff56;
+	text-align: center;
 }
 
 #myProgress {
-  width: 100%;
-  background-color: #000000;
+	width: 100%;
+	background-color: #000000;
 }
 
 #myBar {
-  width: 1%;
-  height: 30px;
-  background-color: #69ff56;
+	width: 1%;
+	height: 30px;
+	background-color: #69ff56;
 }
 
-ul
-{
-  list-style: none;
+#ulll {
+	list-style: none;
 }

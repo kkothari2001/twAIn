@@ -12,7 +12,8 @@
 			src="https://kit.fontawesome.com/fe8e44124d.js"
 			crossorigin="anonymous"
 		></script>
-		<link rel="stylesheet" href="../static/main.css" />
+		<link rel="stylesheet" href="stylesheets/main.css" />
+		<link rel="stylesheet" href="stylesheets/extra.css" />
 	</head>
 	<body>
 		<header id="header">twAIn_</header>
@@ -24,14 +25,18 @@
 						<h1>Select theme:</h1>
 						<div id="theme-select">
 							<button id="horror" onclick="horror();">Horror</button>
-							<button id="adventure" class="active"  onclick="adventure();">Adventure</button>
-							<button id="mystery"  onclick="mystery();">Mystery</button>
+							<button id="adventure" class="active" onclick="adventure();">
+								Adventure
+							</button>
+							<button id="mystery" onclick="mystery();">Mystery</button>
 						</div>
 					</div>
 					<div id="mode-select">
 						<h1>Select view mode:</h1>
 						<div id="views">
-							<button id="green" class="active" onclick="greenClick();">Green</button>
+							<button id="green" class="active" onclick="greenClick();">
+								Green
+							</button>
 							<button id="blue" onclick="blueClick();">Blue</button>
 						</div>
 					</div>
@@ -56,19 +61,19 @@
 					</button>
 				</div>
 				<div id="story-output">
-					<ul>
+					<ul id="ulll">
 						<li>1) SELECT A GENRE</li>
-						<li> </li>
+						<li></li>
 						<li>2) PLEASE ENTER A PHRASE ABOVE AND CLICK SUBMIT</li>
 						<li>OR</li>
 						<li>ENTER "sample" ABOVE TO GET A SAMPLE RANDOM STORY</li>
 						<li></li>
 						<li>3) TYPE "help" TO SHOW THIS PAGE AGAIN</li>
 					</ul>
-					<div class="loadingio-spinner-eclipse-2we2o8onnes" id="loading-icon"> 
+					<div class="loadingio-spinner-eclipse-2we2o8onnes" id="loading-icon">
 						<div class="ldio-6hi50wurrob">
 							<div></div>
-					</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -80,9 +85,9 @@
 				<li id="shreyas">Shreyas</li>
 				<li id="nikheel">Nikheel</li>
 			</ul>
-        </footer>
+		</footer>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<script src="../static/script.js"></script>
+		<script src="script.js"></script>
 	</body>
 </html>
