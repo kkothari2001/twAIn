@@ -530,10 +530,10 @@ footer {
 	display: inline-block;
 	position: absolute;
 	top: 35%;
-	left: 50%;
-	overflow: hidden;
+	left: 52%;
+	z-index: -100;
 	background: #010808;
-	display: none;
+	overflow: hidden;
 }
 .ldio-6hi50wurrob {
 	width: 100%;
