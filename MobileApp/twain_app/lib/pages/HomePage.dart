@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:twain_app/commons/HexColor.dart';
 
@@ -72,15 +73,15 @@ class _HomePageState extends State<HomePage> {
                                   children: <Widget>[
                                     Padding(
                                       padding:
-                                          const EdgeInsets.only(bottom: 8.0),
-                                      child: Icon(
-                                        Icons.touch_app,
-                                        color: HexColor('22F52A'),
-                                        size: 35,
-                                      ),
+                                        const EdgeInsets.only(bottom: 8.0),
+                                        child: Container(
+                                          width: 70,
+                                          height: 70,
+                                          child: FlareActor("assets/images/netanim2.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:"Untitled"),
+                                        ),
                                     ),
                                     Text(
-                                      'GUI',
+                                      'Use twAIn_',
                                       style: TextStyle(
                                           fontFamily: 'Firacode',
                                           color: Colors.white,
@@ -93,45 +94,45 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )
                         ),
-                      SizedBox(height: 10.0),
-                      Container(
-                          decoration: BoxDecoration(
-                              color: HexColor('2F2F2F'),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(10.0),
-                              onTap: () {
-                                Navigator.pushNamed(context, '/cli');
-                              },
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 30.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 8.0),
-                                      child: Text('>_',
-                                          style: TextStyle(
-                                              fontSize: 30,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Firacode',
-                                              color: HexColor('22F52A'))),
-                                    ),
-                                    Text(
-                                      'Terminal',
-                                      style: TextStyle(
-                                          fontFamily: 'Firacode',
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 25),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )),
+                      // SizedBox(height: 10.0),
+                      // Container(
+                      //     decoration: BoxDecoration(
+                      //         color: HexColor('2F2F2F'),
+                      //         borderRadius: BorderRadius.circular(10.0)),
+                      //     child: Material(
+                      //       color: Colors.transparent,
+                      //       child: InkWell(
+                      //         borderRadius: BorderRadius.circular(10.0),
+                      //         onTap: () {
+                      //           Navigator.pushNamed(context, '/cli');
+                      //         },
+                      //         child: Padding(
+                      //           padding: EdgeInsets.symmetric(vertical: 30.0),
+                      //           child: Column(
+                      //             children: <Widget>[
+                      //               Padding(
+                      //                 padding:
+                      //                     const EdgeInsets.only(bottom: 8.0),
+                      //                 child: Text('>_',
+                      //                     style: TextStyle(
+                      //                         fontSize: 30,
+                      //                         fontWeight: FontWeight.bold,
+                      //                         fontFamily: 'Firacode',
+                      //                         color: HexColor('22F52A'))),
+                      //               ),
+                      //               Text(
+                      //                 'Terminal',
+                      //                 style: TextStyle(
+                      //                     fontFamily: 'Firacode',
+                      //                     color: Colors.white,
+                      //                     fontWeight: FontWeight.bold,
+                      //                     fontSize: 25),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     )),
                     ],
                   )
                 ),

@@ -5,8 +5,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:twain_app/commons/HexColor.dart';
 import 'package:http/http.dart' as http;
+import 'package:twain_app/utils/settings.dart';
 
-String sampleStory = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, arcu sed gravida euismod, ipsum lacus rutrum augue, sed posuere mi lectus non mi. Proin lacinia est sit amet nunc aliquet mattis. Sed sit amet nibh sit amet lacus aliquet mattis quis et enim. Maecenas consequat vitae risus ut faucibus. Donec scelerisque, metus non aliquam rhoncus, diam augue pharetra mi, sed feugiat magna nisl interdum leo. Fusce nulla lectus, consectetur in viverra et, venenatis ut quam. Vestibulum non blandit turpis. Phasellus condimentum ligula vitae iaculis sodales. Nulla feugiat, enim at luctus pellentesque, lectus diam commodo diam, eu gravida nisl libero et nisi. Nullam augue risus, ultrices nec magna sit amet, dignissim placerat erat. Etiam vitae venenatis enim, quis finibus justo. Aliquam in elit pulvinar nibh lobortis consequat. Cras rhoncus massa vitae libero sollicitudin elementum. Praesent nec est convallis, tristique tortor ut, blandit est. Vestibulum eu massa in augue pharetra commodo vestibulum eget tortor. In in ipsum sed nisi euismod pellentesque. Donec consectetur, dolor vitae hendrerit eleifend, leo mi dictum dui, non vestibulum velit ante dictum magna. Ut mollis tempor leo non dignissim. In orci lorem, dignissim iaculis iaculis fringilla, mattis et sapien. Aenean est orci, consectetur ut luctus non, scelerisque eu ante. Cras tempor est et sapien mollis, quis suscipit diam tristique. Nunc tristique felis at felis convallis imperdiet.Sed in tellus ultricies massa hendrerit commodo. Sed scelerisque, nisl ac viverra commodo, leo orci laoreet nunc, ac rhoncus lacus tellus eu libero. In diam mauris, dictum eu porta at, interdum finibus ligula. Nunc nec lacus varius, condimentum ex vel, faucibus massa. Praesent tristique vitae risus eu facilisis. Fusce nulla nibh, mollis eget dolor non, porta lobortis erat. Suspendisse quis commodo ex. Phasellus malesuada, odio nec semper volutpat, sapien diam consequat turpis, quis faucibus lectus purus ultrices lectus. Nullam sagittis blandit nunc, in mattis turpis feugiat at. Donec commodo dapibus augue, non mattis tellus tincidunt eget. Vestibulum tincidunt dui eu vestibulum lacinia. Duis lacinia ligula lorem, et faucibus urna dapibus tempus. Quisque tellus odio, malesuada sed orci et, rutrum varius massa.";
+String sampleStory = "This is a sample Story. To generate custom story, follow the README file. \n\n\nAs i woke up i could see the island come into the dawn.\r\nThe blackness made me feel that the shore was\r\ncovering an awful flood.  I stood still and listened.\r\n\r\n\"There,\" said the captain, \"is the man with the leg.\"\r\n\r\nI stood and listened.  The captain said:\r\n\r\n\"Here is the man with the leg, I suppose.\"\r\n\r\n\"Well,\" said I, \"that's all very well.  Good day, all is well.\"\r\n\r\nIn fact, it was only a light rain and the sea was still.\r\n\r\nAfter some time I heard a great noise and I jumped to the shore.  The\r\nland was covered with the footprints of some of the dogs who had run off\r\nwith the man with the leg.  Once upon the shore, I saw a little boat\r\ntowards me, but it was not long before we came to a halt.\r\n\r\n\"Hurry,\" said the captain, \"let us come and see what is the matter with us.\"\r\n\r\n\"Captain, Captain!\" cried I, \"let us speed ahead, for we are\r\ngoing to see if we can get any news from the crew.\"\r\n\r\n\"Captain!\" cried the captain.  \"Captain!\" cried the captain again.\r\n\r\nI followed his orders, and I was about to go to the island when I\r\nheard a great noise as of a ship approaching.  I looked round and\r\nsaw the island covered with the footprints of the dogs, and the\r\nland was covered with their tracks and their tracks were\r\nstill there.  I looked about me and saw no one in view.\r\n\r\n\"Captain,\" cried I, \"we must hurry!\"\r\n\r\nThe captain said:\r\n\r\n\"We are coming back!\"\r\n\r\n\"Captain,\" said I, \"we must hurry!\"\r\n\r\n\"What are you talking about?\" said the captain.  \"Go on.\"\r\n\r\nI went on, and the captain let me go.  He said:\r\n\r\n\"Captain, we have got the signal.  We must hurry!\"\r\n\r\n\"We must hurry!\" cried I, \"however!\"\r\n\r\nThe captain said:\r\n\r\n\"I think we have got it.\"\r\n\r\n\"You think we have?\"\r\n\r\n\"I think we have.\"\r\n\r\n\"What about you thinks so?\"\r\n\r\n\"I think we have.\"\r\n\r\n\"Well, then, we must hurry!\"\r\n\r\nI did as the captain commanded.  We started and let the dogs go, and as\r\nwe came to the island we stopped.  We looked about us and there were\r\nno more dogs to see, but we were still about five or six miles\r\nnorth of the cape.\r\n\r\nThe dog tracks were gone, but the footprints were still there.  We\r\nthen looked about the island, and the fox was gone.  We looked like\r\nthe cannibals we were, and the dog tracks were gone, but the fox\r\nwas not.  We looked about the island, and the fox was gone.  We\r\nthen looked toward the cape, and the fox was gone.  We looked\r\nabout the island, and the fox was gone.\r\n\r\nWell, now we looked through the island\u2013the fox was gone, and the fox\r\ncould not be seen.  The sight of the fox drew our eyes back, and we\r\nsaw that the island was covered with the tracks of the dogs.\r\n\r\n\"Captain, tell me where the other dog tracks are,\" said I.\r\n\r\n\"Sir!\" said the captain, \"they will tell you.\"\r\n\r\nThe dog tracks were still there, but the fox was gone.  We looked\r\naround to see if we could find the fox, but the fox was gone.\r\n\r\nWell, now we looked around to see if we could find the fox, but the\r\nfox was gone.\r\n\r\n\"Captain, tell me where the other dog tracks are,\" said I.\r\n\r\n\"Sir!\" said the captain, \"they will tell you.\"\r\n\r\nThe dog tracks were still there, but the fox was gone.";
 
 class GUIPage extends StatefulWidget {
   @override
@@ -35,18 +36,23 @@ class _GUIPageState extends State<GUIPage> {
     setState(() {
       _isLoadingStory = true;
     });
-    final res = await http.get('${DotEnv().env['URL']}api/gpt2?input=${_inputStoryContoller.text}');
-    if(res.statusCode == 200){
-      String tempString = res.body;
-      tempString.replaceAll(RegExp('_'), "");
+    if(MODE == 'sample'){
       setState(() {
-        _outputStory = tempString;
+        _outputStory = sampleStory;
       });
-      //print(tempString);
-      //return (json.decode(res.body);
     }else{
-      _outputStory = "Some Error is occurred, twAIn can't think anymore.";
+      final res = await http.get('http://$IP_ADD:5000/api/gpt2?input=${_inputStoryContoller.text}');
+      if(res.statusCode == 200){
+        String tempString = res.body;
+        tempString.replaceAll(RegExp('_'), "");
+        setState(() {
+          _outputStory = tempString;
+        });
+      }else{
+        _outputStory = "Some Error is occurred, twAIn can't think anymore.";
+      }
     }
+    
     setState(() {
       _isLoadingStory = false;
       _isStoryEmpty = false;
@@ -77,7 +83,21 @@ class _GUIPageState extends State<GUIPage> {
       });
     });
     await flutterTts.setPitch(1.4);
-    var result = await flutterTts.speak(_outputStory);
+    if(_isSpeaking){
+      flutterTts.stop();
+      setState(() {
+        _isSpeaking = false;
+      });
+    }else{
+      var result = await flutterTts.speak(_outputStory);
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    flutterTts.stop();
+    super.dispose();
   }
 
   @override
