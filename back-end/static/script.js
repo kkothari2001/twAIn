@@ -170,9 +170,22 @@ submit.addEventListener("click", function () {
 	if (document.getElementById("text-input").value == "") {
 		document.getElementById("story-output").innerHTML =
 			"PLEASE ENTER A PHRASE ABOVE TO GET STARTED!";
-	} else if (document.getElementById("text-input").value == "help") {
+	} 
+	else if((document.getElementById("text-input").value) == "download")
+	{
+	
+		axios.get("http://127.0.0.1:8000/download")
+		.then((response) =>{download(response.data)})
+		.catch(
+			(error) =>
+				(document.getElementById("story-output").innerHTML =
+					"OOPS! SOMETHING WENT WRONG :(")
+		);
+		
+	}
+	else if ((document.getElementById("text-input").value).toLowerCase() == "help") {
 		document.getElementById("story-output").innerHTML =
-			'<ul id="ulll"><li>1) SELECT A GENRE</li><li> </li><li>2) PLEASE ENTER A PHRASE ABOVE AND CLICK SUBMIT</li><li>OR</li><li>ENTER "sample" ABOVE TO GET A SAMPLE RANDOM STORY</li><li></li><li>3) TYPE "help" TO SHOW THIS PAGE AGAIN</li></ul>';
+			'<ul id="ulll"><li>1) SELECT A GENRE</li><li> </li><li>2) PLEASE ENTER A PHRASE ABOVE AND CLICK SUBMIT</li><li>OR</li><li>ENTER "sample" ABOVE TO GET A SAMPLE RANDOM STORY</li><li></li><li>3) TYPE "help" TO SHOW THIS PAGE AGAIN</li><li></li><li>4) TYPE "download" TO STORE THE STORY ON YOUR PC</li></ul>';
 	} else {
 
 		loading();
@@ -186,13 +199,12 @@ submit.addEventListener("click", function () {
 			})
 			.then((response) => {
 				// var data=process((response.data)["OutputStory"]);
-				if(document.getElementById("text-input").value=="sample")
+				if((document.getElementById("text-input").value).toLowerCase()=="sample")
 				{
 				setTimeout(function () {
 					var data = response.data["OutputStory"];
 					document.getElementById("story-output").innerHTML =
 						"<pre>" + data + "</pre>";
-					document.getElementById("submit").disabled=false;
 
 				}, 3000);
 			}
@@ -200,7 +212,6 @@ submit.addEventListener("click", function () {
 				var data = response.data["OutputStory"];
 				document.getElementById("story-output").innerHTML =
 						"<pre>" + data + "</pre>";
-				document.getElementById("submit").disabled=false;
 			}
 			})
 			.catch(
@@ -209,6 +220,7 @@ submit.addEventListener("click", function () {
 						"OOPS! SOMETHING WENT WRONG :(")
 			);
 	}
+	document.getElementById("submit").disabled=false;
 });
 
 // Text to Speech
@@ -277,3 +289,17 @@ function loading() {
 		}
 	}
 }
+
+function download(text) {
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	filename=genre+"-"+length+"-story.txt"
+	element.setAttribute('download', filename);
+  
+	element.style.display = 'none';
+	document.body.appendChild(element);
+  
+	element.click();
+  
+	document.body.removeChild(element);
+  }

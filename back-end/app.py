@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import url_for,render_template,request
+from flask import url_for,render_template,request,send_file
 from flask_cors import CORS
 #from DataCleaner import Clean,Grammarize
 from ModelDriver import generate
@@ -76,11 +76,16 @@ def API(genre):  # API handler function
 
     if ((text.lower())!="sample"):
         data["OutputStory"]=generate(data["InputStory"],genre,TokenCount[length])   
+        # data["OutputStory"]=text*50
     else:
         data["OutputStory"]=SampleStoryReader(genre,length) 
 
     data["WordsCount"]=len(data["OutputStory"].split())
     data["TokenCount"]=len(data["OutputStory"])
+
+    f = open(file="GenStories/userStories/story.txt",mode="w",encoding="utf8")
+    f.write(data["OutputStory"])
+    f.close()
 
 # Routes
 @app.route('/')
@@ -102,6 +107,10 @@ def horror():
 def action():
     API("mystery")
     return data
+
+@app.route('/download')
+def download():
+    return send_file(r'.\GenStories\userStories\story.txt', as_attachment=True,attachment_filename='story.txt')
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1',port=PORT)
