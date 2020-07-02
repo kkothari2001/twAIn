@@ -2,16 +2,16 @@ from flask import Flask
 from flask import url_for,render_template,request
 from flask_cors import CORS
 #from DataCleaner import Clean,Grammarize
-#from ModelDriver import generate
+from ModelDriver import generate
 
 app = Flask(__name__)
 CORS(app)
 
 PORT=8000
 TokenCount={  # Story Length (can be implemented later)
-    "Short":1023,
-    "Medium":1705,
-    "Long":2728
+    "short":250,
+    "medium":550,
+    "long":900
 }
 
 data={           # the API response
@@ -23,30 +23,59 @@ data={           # the API response
     "OutputStory":""
 }
 
+reps={
+"adventure":
+{
+	"short":1,
+	"medium":1,
+	"long":1,
+},
+"mystery":
+{
+	"short":1,
+	"medium":1,
+	"long":1,
+},
+"horror":
+{
+	"short":1,
+	"medium":1,
+	"long":1,
+}
+}
+
 def SampleStoryReader(genre,length):
-    url="Genstories/"+genre+".txt"
+
+    # storynum=reps[genre][length]
+    if((reps[genre][length])==6):
+        reps[genre][length]=1
+
+    url="Genstories/"+genre+"/"+length+"/"+str(reps[genre][length])+".txt" # GenStories\adventure\long\(1-5).txt
+    reps[genre][length]=reps[genre][length]+1
     f = open(file=url,mode="r",encoding="utf8")
+
     StoryList=(f.readlines())
     Story=""
+
     for i in range(0,len(StoryList)):
         Story=Story+StoryList[i]+"\n"
 
     f.close()
-    # print(StoryList)
-    # Story="<p>"+Story+"</p>"
     return Story
 
 def API(genre):  # API handler function
     data["Genre"]=genre
     text = request.args["inputText"]
-    length=request.args["length"]
-    text=(text.lstrip()).rstrip()
-    # data["InputStory"]=Grammarize(Clean(text))            # calling Data cleaning module
-    data["InputStory"]=text             # only for gpt-2 model 
-    # data["OutputStory"]=generate(data["InputStory"],genre)  # the text will be passed on to the model and the response will be sent back  
 
-    if (text!="sample"):
-        data["OutputStory"]=text*50  # just for demo 
+    length=request.args["length"]
+    data["LengthType"]=length
+
+    text=(text.lstrip()).rstrip()
+    # data["InputStory"]=Grammarize(Clean(text))          
+    data["InputStory"]=text             # only for gpt-2 model 
+
+    if ((text.lower())!="sample"):
+        data["OutputStory"]=generate(data["InputStory"],genre,TokenCount[length])   
     else:
         data["OutputStory"]=SampleStoryReader(genre,length) 
 
@@ -57,7 +86,7 @@ def API(genre):  # API handler function
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('index.html')  # we have to render kush ka site here
+    return render_template('index.html')  # we have to render site here
 
 @app.route('/api/adventure',methods=['GET'])   # the Model API adventure endpoint
 def adventure():
@@ -73,29 +102,6 @@ def horror():
 def action():
     API("mystery")
     return data
-
-# @app.route('/api/adventure/sample',methods=['GET'])   # the Model API adventure endpoint
-# def adventure():
-#    API("adventure","sample")
-#    return data
-
-# @app.route('/api/horror/sample',methods=['GET'])   # the Model API horror endpoint
-# def horror():
-#     API("horror","sample")
-#     return data
-
-# @app.route('/api/mystery/sample',methods=['GET'])   # the Model API action endpoint
-# def action():
-#     API("mystery","sample")
-#     return data
-
-@app.route('/privacy-policy')
-def policy():
-    return render_template('privacy_policy.html')
- 
-@app.route('/command')   # the Command API endpoint
-def Command():           
-    return "Commands is here!"   
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1',port=PORT)

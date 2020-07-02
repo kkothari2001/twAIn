@@ -1,7 +1,30 @@
 let theme = "green";
 let genre = "adventure";
 let length = "medium";
-var i=0;
+var i = 0;
+
+var timer={   // 1/(n+3) n=no of seconds 
+
+"adventure":
+{
+	"short":0.0096, // time update required
+	"medium":0.005, //
+	"long":0.0035,  //
+},
+"mystery":
+{
+	"short":0.0125, //
+	"medium":0.0071, //
+	"long":0.004, //
+},
+"horror":
+{
+	"short":0.0137, // update required
+	"medium":0.0071, //
+	"long":0.00396, //
+}
+
+};
 
 function adventure() {
 	if (genre !== "adventure") {
@@ -134,54 +157,71 @@ function long() {
 	}
 }
 
+var submit = document.getElementById("submit");
+var url = "http://127.0.0.1:8000/api/" + genre;
 
-
-
-var submit=document.getElementById("submit");
-var url='http://127.0.0.1:8000/api/'+genre;
- 
-submit.addEventListener("click",function(){
-
-	document.getElementById("story-output").innerHTML="<div class=\"mainload\"><div class=\"loadingio-spinner-eclipse-2we2o8onnes\" id=\"loading-icon\"> <div class=\"ldio-6hi50wurrob\"><div></div></div></div><div id=\"myProgress\"><div id=\"myBar\"></div><h4 id=\"pertag\">0.0 %</h4></div></div>"
-	setTimeout(function () {
-	loading();
-	}, 1000);
-
-	if (document.getElementById("text-input").value=="")
-	{
-		document.getElementById("story-output").innerHTML="PLEASE ENTER A PHRASE ABOVE TO GET STARTED!"
-	}
-	else if (document.getElementById("text-input").value=="help")
-	{
-		document.getElementById("story-output").innerHTML="<ul><li>1) SELECT A GENRE</li><li> </li><li>2) PLEASE ENTER A PHRASE ABOVE AND CLICK SUBMIT</li><li>OR</li><li>ENTER \"sample\" ABOVE TO GET A SAMPLE RANDOM STORY</li><li></li><li>3) TYPE \"help\" TO SHOW THIS PAGE AGAIN</li></ul>"
-	}
+submit.addEventListener("click", function () {
+	document.getElementById("submit").disabled=true;
+	document.getElementById("story-output").innerHTML =
+		'<div class="mainload"><div class="loadingio-spinner-eclipse-2we2o8onnes" id="loading-icon"> <div class="ldio-6hi50wurrob"><div></div></div></div><div id="myProgress"><div id="myBar"></div><h4 id="pertag">0.0 %</h4></div></div>';
 	
-	else{
-    axios.get(url,{
-		params: {
-		  inputText: document.getElementById("text-input").value,
-		  length: length	
-		}
-	  })
-    .then(response =>{
-		// var data=process((response.data)["OutputStory"]);
-		setTimeout(function () {
-			var data=(response.data)["OutputStory"];
-			document.getElementById("story-output").innerHTML="<pre>"+(data)+"</pre>";
-		}, 1000000);
-		
-  
-    })
-	.catch(error => document.getElementById("story-output").innerHTML="OOPS! SOMETHING WENT WRONG :(");
-}
-})
+	
+
+	if (document.getElementById("text-input").value == "") {
+		document.getElementById("story-output").innerHTML =
+			"PLEASE ENTER A PHRASE ABOVE TO GET STARTED!";
+	} else if (document.getElementById("text-input").value == "help") {
+		document.getElementById("story-output").innerHTML =
+			'<ul id="ulll"><li>1) SELECT A GENRE</li><li> </li><li>2) PLEASE ENTER A PHRASE ABOVE AND CLICK SUBMIT</li><li>OR</li><li>ENTER "sample" ABOVE TO GET A SAMPLE RANDOM STORY</li><li></li><li>3) TYPE "help" TO SHOW THIS PAGE AGAIN</li></ul>';
+	} else {
+
+		loading();
+
+		axios
+			.get(url, {
+				params: {
+					inputText: document.getElementById("text-input").value,
+					length: length,
+				},
+			})
+			.then((response) => {
+				// var data=process((response.data)["OutputStory"]);
+				if(document.getElementById("text-input").value=="sample")
+				{
+				setTimeout(function () {
+					var data = response.data["OutputStory"];
+					document.getElementById("story-output").innerHTML =
+						"<pre>" + data + "</pre>";
+					document.getElementById("submit").disabled=false;
+
+				}, 3000);
+			}
+			else{
+				var data = response.data["OutputStory"];
+				document.getElementById("story-output").innerHTML =
+						"<pre>" + data + "</pre>";
+				document.getElementById("submit").disabled=false;
+			}
+			})
+			.catch(
+				(error) =>
+					(document.getElementById("story-output").innerHTML =
+						"OOPS! SOMETHING WENT WRONG :(")
+			);
+	}
+});
 
 // Text to Speech
 function speakStory() {
+	
 	let story = document.getElementById("story-output").innerText;
-	if (story == "") {
+
+	if (story == "") 
+	{
 		speakOnClick("Hello I'm Twain! I write awesome stories!");
-	} else {
+	} 
+	else 
+	{
 		speakOnClick(story);
 	}
 }
@@ -195,29 +235,45 @@ const speakOnClick = (textInput) => {
 };
 
 function loading() {
+
+	var time;
+	if((document.getElementById("text-input").value).toLowerCase() == "sample")
+		time=0.3383;
+	else
+		time=((timer[genre][length]));
+
 	// spinner
 	let load = document.getElementById("loading-icon");
+
+	if(document.getElementById("loading-icon")!=null)
+	{			
 	load.style.display = "initial";
-	document.getElementById("pertag").innerText="0.0 %"
+	document.getElementById("pertag").innerText = "0.0 %";
+	}
+
 	// progress bar
 	if (i == 0) {
+
 		i = 1;
-		// var elem = document.getElementById("myBar");
 		var width = 1;
 		var id = setInterval(frame, 10);
-		function frame() {
-		  if (width >= 100) {
-			clearInterval(id);
-			i = 0;
-		  } else {
-			width=width+0.01; 
-			document.getElementById("pertag").innerText=width.toFixed(1)+" %";
-			// console.log((Math.round(width)).toString())
-			// console.log(document.getElementById("myBar").style.width)
-			document.getElementById("myBar").style.width = (Math.round(width)).toString()+"%";
 
-		  }
+		function frame() {
+
+			if (width >= 100) {
+				clearInterval(id);
+				i = 0;
+			} 
+			else 
+			{
+				width = width + time;
+				// console.log(time);
+				if(document.getElementById("pertag")!=null)
+				{
+				document.getElementById("pertag").innerText = width.toFixed(1) + " %";
+				document.getElementById("myBar").style.width = Math.round(width).toString() + "%";
+				}
+			}
 		}
-	  }
-	  
+	}
 }

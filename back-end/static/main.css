@@ -3,27 +3,6 @@
   --main-opp-color: #69ff56;
 }
 
-#pertag
-{
-color: #69ff56;
-text-align:center;
-}
-
-#myProgress {
-  width: 100%;
-  background-color: #000000;
-}
-
-#myBar {
-  width: 1%;
-  height: 30px;
-  background-color: #69ff56;
-}
-
-ul{
-  list-style: none;
-}
-
 button {
   outline: none;
 }
@@ -751,12 +730,12 @@ footer #names #nikheel {
   width: 200px;
   height: 200px;
   display: inline-block;
-  position: relative;
+  position: absolute;
   top: 35%;
-  left: 50%;
+  left: 52%;
+  z-index: -100;
+  background: #010808;
   overflow: hidden;
-  background: none;  /*#010808*/
-  display: none;
 }
 
 .ldio-6hi50wurrob {
