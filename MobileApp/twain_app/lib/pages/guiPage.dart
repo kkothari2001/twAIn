@@ -1,6 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:twain_app/commons/HexColor.dart';
@@ -19,6 +19,8 @@ class _GUIPageState extends State<GUIPage> {
   TextEditingController _inputStoryContoller = new TextEditingController();
   int _genreIndex = 0;
   int _lengthIndex = 0;
+  List<String> genreList = ['adventure', 'horror', 'mystery'];
+  List<String> lengthList = ['short', 'medium', 'long'];
   String _outputStory = "twAIn is ready to write a story for you :)";
   bool _isStoryEmpty = true;
   bool _isLoadingStory = false;
@@ -41,16 +43,30 @@ class _GUIPageState extends State<GUIPage> {
         _outputStory = sampleStory;
       });
     }else{
-      final res = await http.get('http://$IP_ADD:5000/api/gpt2?input=${_inputStoryContoller.text}');
-      if(res.statusCode == 200){
-        String tempString = res.body;
-        tempString.replaceAll(RegExp('_'), "");
-        setState(() {
-          _outputStory = tempString;
-        });
-      }else{
+
+      Map<String, String> qParams = {
+        'inputText': _inputStoryContoller.text,
+        'length': lengthList[_lengthIndex],
+      };
+
+      try {
+        var _dio = new Dio();
+        String url = "http://$IP_ADD:8000/api/${genreList[_genreIndex]}";
+        var res = await _dio.get(url, queryParameters: qParams);
+        if(res.statusCode == 200){
+          String tempString = res.data['OutputStory'];
+          tempString.replaceAll(RegExp('_'), "");
+          setState(() {
+            _outputStory = tempString;
+          });
+        }else{
+          _outputStory = "Some Error is occurred, twAIn can't think anymore.";
+        }
+      } catch (e) {
+        print("Error");
         _outputStory = "Some Error is occurred, twAIn can't think anymore.";
       }
+      
     }
     
     setState(() {
