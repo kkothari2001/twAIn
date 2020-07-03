@@ -24,24 +24,24 @@ data={           # the API response
 }
 
 reps={
-"adventure":
-{
-	"short":1,
-	"medium":1,
-	"long":1,
-},
-"mystery":
-{
-	"short":1,
-	"medium":1,
-	"long":1,
-},
-"horror":
-{
-	"short":1,
-	"medium":1,
-	"long":1,
-}
+    "adventure":
+    {
+        "short":1,
+        "medium":1,
+        "long":1,
+    },
+    "mystery":
+    {
+        "short":1,
+        "medium":1,
+        "long":1,
+    },
+    "horror":
+    {
+        "short":1,
+        "medium":1,
+        "long":1,
+    }
 }
 
 def SampleStoryReader(genre,length):
