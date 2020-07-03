@@ -5,6 +5,7 @@ var i = 0;
 let tts;
 let isSpeaking = false;
 let stopLoading = false;
+var Edisabled=false;
 
 var timer = {
   // 1/(n+3) n=no of seconds
@@ -157,19 +158,21 @@ function long() {
   }
 }
 
-var submit = document.getElementById("submit");
 
 document.querySelector('#story-input input').addEventListener('keyup', function(event) {
-	if (event.code === 'Enter') {
+	if (event.code === 'Enter'&& Edisabled==false) {
 		event.preventDefault();
-		submit.click();
+    document.getElementById("submit").click();
+    
 	}
 });
 
-submit.addEventListener("click", function () {
+document.getElementById("submit").addEventListener("click", function () {
   var url = "http://127.0.0.1:8000/api/" + genre;
   document.getElementById("submit").disabled = true;
-  
+  Edisabled=true;
+  stopLoading=false;
+  console.log(document.getElementById("submit").disabled)
 
   if (document.getElementById("text-input").value == "") {
     document.getElementById("story-output").innerHTML = "PLEASE ENTER A PHRASE ABOVE TO GET STARTED!";
@@ -206,11 +209,18 @@ submit.addEventListener("click", function () {
             document.getElementById("story-output").innerHTML = "<pre>" + data + "</pre>";
             i = 0;
             stopLoading = true;
+            document.getElementById("submit").disabled = false;
+            Edisabled=false;
+            console.log(document.getElementById("submit").disabled)
           }, 3000);
         } else {
           var data = response.data["OutputStory"];
           document.getElementById("story-output").innerHTML = "<pre>" + data + "</pre>";
+          document.getElementById("submit").disabled = false;
+          Edisabled=false;
         }
+        
+
       })
       .catch(
         (error) => {
@@ -220,8 +230,8 @@ submit.addEventListener("click", function () {
         }
       );
   }
-  document.getElementById("submit").disabled = false;
-  
+  // stopLoading=false;
+
 });
 
 // Text to Speech
