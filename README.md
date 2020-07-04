@@ -25,10 +25,8 @@ An AI that generates amazing stories!
 
 
 ### Technology Stack
-* Front-end
- - Html,CSS,Javascript
-* Back-end
- - [Flask](https://flask.palletsprojects.com/en/1.1.x/) - Flask is a lightweight WSGI web application framework.
+* Front-end - Html,CSS,Javascript
+* Back-end - [Flask](https://flask.palletsprojects.com/en/1.1.x/) - Flask is a lightweight WSGI web application framework.
 * Android 
 
 ### Project Setup
@@ -50,4 +48,4 @@ It can also convert the generated story into audio.
 
 
 ### Screeshots
- __screenshots of input and output__
+    __screenshots of input and output__
