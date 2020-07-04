@@ -17,11 +17,11 @@ An AI that generates amazing stories!
 - **Owais Hetavkar**
 
 ## 📝 Description
-twAIn is an Artificial Intelligence that can write amazing stories. twAIn is powered by LSTM and GPT-2 Models. It is trained on 20+ novels of different Genres. twAIn can be used as a Web App and a Mobile App.<br/>Give some starting words and twAIn will write a story for you. Currently the genres supported are Adventure, Horror and Mystery. The user can also listen to the generated story as twAIn reads aloud the story for you.
+twAIn is an Artificial Intelligence that can write amazing stories. twAIn is powered by LSTM and GPT-2 Models. It is trained on 20+ novels of different Genres. twAIn can be used as a Web App and a Mobile App.<br/>Give some starting words and twAIn will write a story for you. Currently the genres supported are Adventure, Horror and Mystery. The user can also listen to the generated story as twAIn reads aloud the story for you. Also there are 45 sample stories preloaded so that you can see the performance of that model.  
 
 ## 🔗 Links
 * GitHub repo link: [Link to repository](https://github.com/kkothari2001/twAIn)
-* Drive link: [Drive link here](https://drive.google.com/)
+* Drive link (Video): [Drive link here](https://drive.google.com/)
 
 ## 🤖 Technology Stack
 * Front-end - HTML, CSS, Javascript
@@ -35,7 +35,7 @@ twAIn is an Artificial Intelligence that can write amazing stories. twAIn is pow
 ```
 git clone https://github.com/kkothari2001/twAIn
 ```
-2. Download the models from [here](https://drive.google.com/) (You can download single genre or all genres)
+2. Download the models from [here](https://drive.google.com/drive/folders/1aTae2Nz3ctIhPW-yzAo_pExutF03Ec-N?usp=sharing) (You can download single genre or all genres)
 3. After downloading the models, add the models in this path
 ```
 twAIn/WebApp/checkpoint/<genreNameFolders>
@@ -78,8 +78,25 @@ python app.py
 This project generates stories based on the input provided by the user. There are various genres for the user to select which includes *Adventure* ,*Horror*,*Mystery*.
 It can also convert the generated story into audio.
 
-## 🔮 Future Scope
+#### For Web
+1. Type "help" to get a help-page on your screen.
+2. Type "sample" to generate a sample story.
+3. Type "download" to download the generated story as a text file.
 
+The stories to be generated take some time:-
+short story (250 chars) = max 2 mins
+medium story (550 chars) = max 4 mins
+long story (900 chars) = max 6 mins
+
+If you dont wish to wait so much time you can type "sample" and press Enter or click Submit (Web)
+to get a sample story of that genre and of a specific story length.
+There are 45 sample stories preloaded and take about 3 seconds to load.
+
+## 🔮 Future Scope
+1. We could add more genres
+2. Try to improve our LSTM model to maximize the results for story generation.
+3. We could also do a model for generating poems and other creative writing templates.
+4. We could also include a sentimental analysis model which will tell how good a story is (by a small survey     we can know the sentiments of a user towards a particular story). 
 
 ## 🖼 Screeshots
     __screenshots of input and output__
