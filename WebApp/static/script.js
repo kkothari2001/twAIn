@@ -185,6 +185,8 @@ document.getElementById("submit").addEventListener("click", function () {
       .catch(
         (error) => {
           document.getElementById("story-output").innerHTML = "OOPS! SOMETHING WENT WRONG :(";
+          document.getElementById("submit").disabled = false;
+          Edisabled=false;
         }
       );
   } else if ( document.getElementById("text-input").value.toLowerCase() == "help" ) {
@@ -226,7 +228,9 @@ document.getElementById("submit").addEventListener("click", function () {
         (error) => {
           document.getElementById("story-output").innerHTML = "OOPS! SOMETHING WENT WRONG :(";
           i = 0;
+          document.getElementById("submit").disabled = false;
           stopLoading = true;
+          Edisabled=false;
         }
       );
   }

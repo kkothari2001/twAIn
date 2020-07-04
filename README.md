@@ -1,8 +1,15 @@
-# **twAIn_**
+<div style="
+    display: flex;
+    justify-content: start;
+    align-items: center;">
+    <img src="./images/icon.png" height="40">
+    <span style="font-weight: bold; font-size: 30px; margin-left: 10px;">twAIn</span>
+</div>
+
 
 An AI that generates amazing stories!
 
-### Team Name : **GoogleKarnaHamseSikho**
+#### Team Name : **GoogleKarnaHamseSikho**
 ![Screenshot alt text](./images/headerbg.png)
 
 ## 👩‍💻 Team members

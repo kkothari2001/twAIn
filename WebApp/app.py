@@ -1,8 +1,9 @@
+print("Opening Server... Please wait")
 from flask import Flask
 from flask import url_for,render_template,request,send_file
 from flask_cors import CORS
 #from DataCleaner import Clean,Grammarize
-# from ModelDriver import generate
+from ModelDriver import generate
 
 app = Flask(__name__)
 CORS(app)
@@ -75,8 +76,8 @@ def API(genre):  # API handler function
     data["InputStory"]=text             # only for gpt-2 model 
 
     if ((text.lower())!="sample"):
-        # data["OutputStory"]=generate(data["InputStory"],genre,TokenCount[length])   
-        data["OutputStory"]=text*50
+        data["OutputStory"]=generate(data["InputStory"],genre,TokenCount[length])   
+        #data["OutputStory"]=text*50
     else:
         data["OutputStory"]=SampleStoryReader(genre,length) 
 
