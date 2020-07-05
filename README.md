@@ -3,7 +3,7 @@
 An AI that generates amazing stories!
 
 #### Team Name : **GoogleKarnaHamseSikho**
-![Screenshot alt text](./images/headerbg.png)
+![Screenshot alt text](https://drive.google.com/uc?export=view&id=1sR5qjHWHNf2pAYr_ZPLEqDBCwXmJVuNh)
 
 ## 👩‍💻 Team members
 - **Ravi Maurya 🦉** - ravimaurya027@gmail.com
