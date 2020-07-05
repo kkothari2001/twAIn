@@ -1,11 +1,4 @@
-<div style="
-    display: flex;
-    justify-content: start;
-    align-items: center;">
-    <img src="./images/icon.png" height="40">
-    <span style="font-weight: bold; font-size: 30px; margin-left: 10px;">twAIn</span>
-</div>
-
+# <img src="./images/icon.png" height="30"> **twAIn**
 
 An AI that generates amazing stories!
 
@@ -86,14 +79,14 @@ This project generates stories based on the input provided by the user. There ar
 It can also convert the generated story into audio.
 
 #### For Web
-1. Type "help" to get a help-page on your screen.
-2. Type "sample" to generate a sample story.
-3. Type "download" to download the generated story as a text file.
+* Type "help" to get a help-page on your screen.
+* Type "sample" to generate a sample story.
+* Type "download" to download the generated story as a text file.
 
 The stories to be generated take some time:-
-short story (250 chars) = max 2 mins
-medium story (550 chars) = max 4 mins
-long story (900 chars) = max 6 mins
+* short story (250 chars) = max 2 mins
+* medium story (550 chars) = max 4 mins
+* long story (900 chars) = max 6 mins
 
 If you dont wish to wait so much time you can type "sample" and press Enter or click Submit (Web)
 to get a sample story of that genre and of a specific story length.
@@ -105,5 +98,5 @@ There are 45 sample stories preloaded and take about 3 seconds to load.
 3. We could also do a model for generating poems and other creative writing templates.
 4. We could also include a sentimental analysis model which will tell how good a story is (by a small survey     we can know the sentiments of a user towards a particular story). 
 
-## 🖼 Screeshots
+## 🖼 Screenshots
     __screenshots of input and output__

@@ -292,10 +292,6 @@ class _GUIPageState extends State<GUIPage> {
                           child: Container(
                             width: 100,
                             height: 100,
-                            // child: Rive(
-                            //   filename: 'assets/images/netanim2.flr',
-                            //   animation: 'Untitled',
-                            // ),
                             child: FlareActor("assets/images/netanim2.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:"Untitled"),
                           ),
                           //child: SpinKitThreeBounce(color: Colors.white, size : 40.0),
