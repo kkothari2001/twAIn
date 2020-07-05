@@ -1,4 +1,4 @@
-# <img src="./images/icon.png" height="30"> **twAIn**
+# **twAIn**
 
 An AI that generates amazing stories!
 
@@ -21,7 +21,8 @@ twAIn is an Artificial Intelligence that can write amazing stories. twAIn is pow
 
 ## 🔗 Links
 * GitHub repo link: [Link to repository](https://github.com/kkothari2001/twAIn)
-* Drive link (Video): [Drive link here](https://drive.google.com/)
+* Drive link (Demo Video): [Drive link here](https://drive.google.com/drive/folders/157-9lOdn5lImO3KYgIIfoL04XEfkUpTj?usp=sharing)
+* Model link: [Drive link here](https://drive.google.com/drive/folders/1aTae2Nz3ctIhPW-yzAo_pExutF03Ec-N?usp=sharing)
 
 ## 🤖 Technology Stack
 * Front-end - HTML, CSS, Javascript
@@ -29,7 +30,7 @@ twAIn is an Artificial Intelligence that can write amazing stories. twAIn is pow
 * Models - [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory),  [Open AI's GPT-2](https://openai.com/blog/better-language-models/)
 * Mobile App - [Flutter](https://flutter.dev/)
 
-## 🧷 Project Setup
+## 🛠️ Project Setup
 #### For Web
 1. Clone the repository
 ```
@@ -99,4 +100,5 @@ There are 45 sample stories preloaded and take about 3 seconds to load.
 4. We could also include a sentimental analysis model which will tell how good a story is (by a small survey     we can know the sentiments of a user towards a particular story). 
 
 ## 🖼 Screenshots
-    __screenshots of input and output__
+![Web App](https://drive.google.com/uc?export=view&id=1JNdp6u6c2waackYbFuUYu9wlTa3jJmhD)
+![Mobile App](https://drive.google.com/uc?export=view&id=1mv1-QscqL9SuohiMJahynXNqne28llg9)
