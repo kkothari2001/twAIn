@@ -69,8 +69,8 @@ Eg. twAIn/WebApp/checkpoint/adventure
 flutter pub get
 ```
 
-4. Open file MobileApp/twain_app/lib/utils/settings.dart.
-   In this file set MODE to **_production_**, and set IP_ADD to your local IP Address. (So that you can test it locally).
+4. Open file MobileApp/twain*app/lib/utils/settings.dart.
+   In this file set MODE to \*\*\_production*\*\*, and set IP_ADD to your local IP Address. (So that you can test it locally).
 5. Install the app on your physical Mobile Device or Emulator.
 
 ## 🏃‍♀️ Usage
@@ -121,10 +121,10 @@ There are 45 sample stories preloaded and take about 3 seconds to load.
 
 ## 🔮 Future Scope
 
-- [] We could add more genres
-- [] Try to improve our LSTM model to maximize the results for story generation.
-- [] We could also do a model for generating poems and other creative writing templates.
-- [] We could also include a sentimental analysis model which will tell how good a story is (by a small survey we can know the sentiments of a user towards a particular story).
+- [ ] We could add more genres
+- [ ] Try to improve our LSTM model to maximize the results for story generation.
+- [ ] We could also do a model for generating poems and other creative writing templates.
+- [ ] We could also include a sentimental analysis model which will tell how good a story is (by a small survey we can know the sentiments of a user towards a particular story).
 
 ## 🖼 Screenshots
 
