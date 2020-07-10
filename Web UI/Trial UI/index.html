@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="dist/main.css" />
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<title>twAIn</title>
+	</head>
+	<body>
+		<header>
+			<div id="title">
+				twAIn_
+			</div>
+		</header>
+		<main>
+			<div class="settings">
+				<h1>Design your story!</h1>
+				<div class="length-select">
+					<h3>Length Select</h3>
+					<button id="short" class="active">Short</button>
+					<button id="medium">Medium</button>
+					<button id="long">Long</button>
+				</div>
+				<div class="genre-select">
+					<h3>Genre Select</h3>
+					<button id="adventure" class="active">Adventure</button>
+					<button id="horror">Horror</button>
+					<button id="mystery">Mystery</button>
+				</div>
+				<button id="done">Done!</button>
+			</div>
+			<!-- <div class="story"></div> -->
+		</main>
+		<script src="script.js"></script>
+		<script>
+			AOS.init();
+		</script>
+	</body>
+</html>
