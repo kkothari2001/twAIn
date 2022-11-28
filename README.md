@@ -8,10 +8,10 @@ An AI that generates amazing stories!
 
 ## 👩‍💻 Team members
 
-- **Ravi Maurya 🦉** - ravimaurya027@gmail.com
-- **Kush Kothari 😎** - kushkothari2001@gmail.com
-- **Shreyas Penkar 🦊** - shreyaspenkar123@gmail.com
-- **Nikheel Indanoor 🦅** - nikheelindanoor123@gmail.com
+- **Ravi Maurya 🦉**
+- **Kush Kothari 😎**
+- **Shreyas Penkar 🦊**
+- **Nikheel Indanoor 🦅**
 
 ## 👨‍🏫 Mentors
 
