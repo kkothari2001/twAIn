@@ -4,7 +4,7 @@ An AI that generates amazing stories!
 
 #### Team Name : **GoogleKarnaHamseSikho**
 
-![Screenshot alt text](https://drive.google.com/uc?export=view&id=1sR5qjHWHNf2pAYr_ZPLEqDBCwXmJVuNh)
+![Screenshot alt text](./images/headerbg.png)
 
 ## 👩‍💻 Team members
 
